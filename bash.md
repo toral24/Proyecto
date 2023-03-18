@@ -43,3 +43,36 @@ El primer dígito que se muestra es un id que se puede pasar al siguiente comand
 ```bash
 kill {id} o {nombre proceso}
 ```
+Para ver el contenido de una página:
+```bash
+curl {url página}
+```
+*Puede ser útil este comando a la página web ifconfig.me que devuelve la ip pública con la que te conectas a internet (router).
+
+Filtrar texto, por ejemplo, de la salida de un comando:
+```bash
+cat {fichero} | grep {texto que se busca en el fichero}
+```
+*Añadiendo el parametro -v hace una busqueda inversa, es decir, donde no se encuentra la palabra a filtrar.
+
+Ver el espacio de cada disco:
+```bash
+df -h
+```
+Mostrar los procesos del equipo:
+```bash
+htop
+```
+Para ver los procesos que están utilizando los diferentes procesos:
+
+```bash
+netstat -natup
+```
+*netstat tiene muchos más parametros útiles.
+
+Para ver el tráfico de red por un puerto, de un protocolo determinado y por una interfaz determinada.
+```bash
+tcpdump -i {interfaz “any para todas”}  -p {protocolo} port {puerto}
+```
+*Este comando también tiene muchos parametros útiles.
+
