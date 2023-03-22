@@ -1,4 +1,5 @@
 # Docker
+![docker logo](./Docker_Logo.jpg)
 
 Docker es un proyecto de código abierto, bajo licencia apache, escrito en Go y sirve para automatizar el despliegue de aplicaciones dentro de contenedores. Docker fue lanzado en 2008 incorporando una serie de conceptos y herramientas nuevos: 
 

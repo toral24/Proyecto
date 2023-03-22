@@ -10,6 +10,18 @@ Docker compose es un plugin sencillo que ya viene pre-instalado con las últimas
 
 La idea detrás de docker compose es facilitar la ejecución de diferentes contenedores que van a interactuar entre sí, a partir de un fichero .yaml en el que se indican diferentes parametros de cada uno antes de levantarse.
 
+Para levantar todos los contenedores definidos en el fichero docker-compose.yml hay que utilizar el siguiente comando:
+
+```bash
+docker-compose up -d
+```
+
+Y para detener todos los contenedores se utilizaría:
+
+```bash
+docker-compose down
+```
+
 ## Docker Hub
 
 [Docker Hub](https://hub.docker.com/) es un sitio web similar a github en el que la gente puede de forma fácil contribuir y publicar sus imágenes. Docker tiene su propia cuenta en al que publica sus imagenes oficiales. Estas imagenes y las de autores verificados son de mayor confianza que el resto, ya que, las imagenes publicadas no dejan de ser software de terceros y pueden contener software malicioso.
