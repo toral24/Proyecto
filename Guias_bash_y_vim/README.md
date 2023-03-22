@@ -19,6 +19,8 @@
 
     4.1. [Conceptos básicos](../Kubernetes/Conceptos.md)
 
+    4.2. [Comandos kubectl](../Kubernetes//Comandos_kubectl.md)
+
 Para optimizar el tiempo de trabajo se ha decido crear dos guías en las que consultar comandos útiles. 
 
 La [primera](./bash.md) son algunos comandos de bash relativamente avanzados y orientados al manejo de contenedores y servidores en general.

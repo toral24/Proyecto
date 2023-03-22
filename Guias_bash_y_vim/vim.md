@@ -18,6 +18,7 @@
 4. [Kubernetes](../Kubernetes/)
 
     4.1. [Conceptos básicos](../Kubernetes/Conceptos.md)
+    4.2. [Comandos kubectl](../Kubernetes//Comandos_kubectl.md)
 
 A lo largo del curso para editar archivos de texto en Linux se ha utilizado el editor de texto nano como en este trabajo.
 ## Conceptos básicos

@@ -18,10 +18,42 @@
 4. [Kubernetes](.)
 
     4.1. [Conceptos básicos](./Conceptos.md)
-## Introducción
+
+    4.2. [Comandos kubectl](./Comandos_kubectl.md)
 
 ## Kubectl
-
+Kubectl es una interfaz de línea de comandos que se instala en un equipo cliente. Permite gestionar los clústers de kubernetes 
 ## Pod
 
 ## Volume
+
+## Deployment
+
+## Service
+
+## Nodo
+
+## Cluster
+
+## Secret
+
+## Ingress
+
+## Almacenamiento
+
+## Configmap
+
+## Replicaset
+
+## StatefulSets
+
+## DaemonSet
+
+## Jobs
+
+## CronJob
+
+## ReplicationController
+
+## Namespaces
+

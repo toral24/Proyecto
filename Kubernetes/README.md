@@ -20,6 +20,8 @@
 4. [Kubernetes](.)
 
     4.1. [Conceptos básicos](./Conceptos.md)
+    
+    4.2. [Comandos kubectl](./Comandos_kubectl.md)
 
 Kubernetes hace referencia al timonel de un barcon en Esperanto. De ahi el logo, que recuerda a un timón.
 

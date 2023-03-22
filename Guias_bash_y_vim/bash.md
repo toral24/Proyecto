@@ -20,6 +20,8 @@
 
     4.1. [Conceptos básicos](../Kubernetes/Conceptos.md)
 
+    4.2. [Comandos kubectl](../Kubernetes//Comandos_kubectl.md)
+
 ## Comandos
 Para copiar todos los archivos de un directorio en otro, si ya existen en el otro directorio no hace nada. Útil para hace backups. Se utiliza el siguiente comando:
 ```bash
