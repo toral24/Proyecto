@@ -57,3 +57,5 @@ Kubectl es una interfaz de línea de comandos que se instala en un equipo client
 
 ## Namespaces
 
+## Kind
+
