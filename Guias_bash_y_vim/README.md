@@ -2,7 +2,7 @@
 
 ## Índice
 
-1. [Docker y Kubernetes. La revolución de los contenedores](../)
+1. [Inicio](../../../)
 2. [Guías bash y vim](.)
 
     2.1. [Guía bash](./bash.md)
