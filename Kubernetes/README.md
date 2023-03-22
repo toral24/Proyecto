@@ -4,7 +4,7 @@
 
 ## Índice
 
-1. [Docker y Kubernetes. La revolución de los contenedores](..)
+1. [Docker y Kubernetes. La revolución de los contenedores](../)
 2. [Guías bash y vim](../Guias_bash_y_vim/)
 
     2.1. [Guía bash](../Guias_bash_y_vim/bash.md)
