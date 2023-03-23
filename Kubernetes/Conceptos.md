@@ -52,9 +52,11 @@ Dentro de un ReplicaSet se definen con campos un número de réplicas, incluyend
 
 ## [Deployment](./ejemplo-deployment.yaml)
 
-Un controlador de Deployment proporciona actualizaciones declarativas para los Pods y los ReplicaSets. En el mismo archivo se especifica un estado deseado y el controlador de deployment se encarga de cambiar del estado actual al deaseado de forma controlada
+Un controlador de Deployment proporciona actualizaciones declarativas para los Pods y los ReplicaSets. En el mismo archivo se especifica un estado deseado y el controlador de deployment se encarga de cambiar del estado actual al deaseado de forma controlada.
 
 ## Service
+
+Un servicio es un objeto de Kubernetes que describe como se accede a las aplicaciones de un conjunto de Pods, que puede describir puertos y balanceadores de carga.  Por lo tanto, un servicio es una abtracción que define una política por la cual acceder a una aplicación
 
 ## Nodo
 
