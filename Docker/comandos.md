@@ -75,6 +75,13 @@ docker voume prune
 docker volume rm {Nombre del voumen}
 ```
 
+Para construir una imagen a partir de un fichero dockerfile (dentro del directorio actual o pasado como URL):
+
+```bash
+docker build {PATH | URL} -t {Nombre que va a recibir la imagen}
+```
+*Si se ejecuta sin parametros se construirá una imagen a partir del dockerfile que se encuentr en el directorio actual.
+
 Ejecutar un comando en un contenedor:
 
 ```bash
