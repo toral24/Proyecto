@@ -27,7 +27,7 @@ Para copiar todos los archivos de un directorio en otro, si ya existen en el otr
 ```bash
 rsync -a
 ```
-Para mostrar el tamaño de un directorio, si se añade * al final muestrta el peso de cada archivo del directorio.
+Para mostrar el tamaño de un directorio, se puede añadir * al final para ver el peso de cada archivo del directorio.
 ```bash
 du -sh 
 ```
@@ -49,7 +49,7 @@ zipinfo {nombre archivo comprimido}
 ```
 Buscar archivos:
 ```bash
-find {ruta directorio} {parametros; 
+find {ruta directorio} {parámetros; 
 Algunos útiles son:
 -mtime (filtrar por tiempo de modificación)
 -inmae (filtrar por nombre)
@@ -77,7 +77,7 @@ Filtrar texto, por ejemplo, de la salida de un comando:
 ```bash
 cat {fichero} | grep {texto que se busca en el fichero}
 ```
-*Añadiendo el parametro -v hace una busqueda inversa, es decir, donde no se encuentra la palabra a filtrar.
+*Añadiendo el parámetro -v hace una básqueda inversa, es decir, donde no se encuentra la palabra a filtrar.
 
 Ver el espacio de cada disco:
 ```bash
@@ -92,11 +92,11 @@ Para ver los procesos que están utilizando los diferentes procesos:
 ```bash
 netstat -natup
 ```
-*netstat tiene muchos más parametros útiles.
+*netstat tiene muchos más parámetros útiles.
 
 Para ver el tráfico de red por un puerto, de un protocolo determinado y por una interfaz determinada.
 ```bash
 tcpdump -i {interfaz “any para todas”}  -p {protocolo} port {puerto}
 ```
-*Este comando también tiene muchos parametros útiles.
+*Este comando también tiene muchos parámetros útiles.
 
