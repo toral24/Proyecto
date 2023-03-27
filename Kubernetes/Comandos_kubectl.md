@@ -21,77 +21,77 @@
 
     4.2. [Comandos kubectl](./Comandos_kubectl.md)
 
-Información del cluster
+Información del clúster:
 
 ```bash
 kubectl cluster-info
 ```
 
-Lista de nodos del cluster
+Lista de nodos del clúster:
 
 ```bash
 kubectl get nodes
 ```
 
-Lista de pods
+Lista de pods:
 ```bash
 kubectl get pods
 ```
-Lista de servicios
+Lista de servicios:
 
 ```bash
 kubectl get service
 ```
 
-Lista de deployments
+Lista de deployments:
 
 ```bash
 kubectl get deployments
 ```
 
-Exponer un deployment
+Exponer un deployment:
 
 ```bash
 kubectl exponse deployment first-deployment --port=80 --type=NodePort
 ```
 
-Información detallada del pod
+Información detallada del pod:
 
 ```bash
-kubectl describe pod {nombre delpod}
+kubectl describe pod {nombre del pod}
 ```
 
-Eliminar servicio
+Eliminar servicio:
 
 ```bash
 kubectl delete service {nombre del servicio}
 ```
 
-Eliminar deployment
+Eliminar deployment:
 
 ```bash
 kubectl delete deployment {nombre del deployment}
 ```
 
-Escalar a 3 replicas un deployment
+Escalar a 3 réplicas un deployment:
 
 ```bash
 kubectl scale --replicas=3 deployment {nombre del deployment}
 ```
 
-Acceder a un pod
+Acceder a un pod:
 
 ```bash
 kubectl exec -it {nombre del pod} 
 ```
 
-Crear un secret
+Crear un secret:
 
 ```bash
 kubectl create secret generic mysql-pass --from-literal=password=mypassword
 ```
 
-Aplicar el contenido de un fichero deployment.yaml
+Aplicar el contenido de un fichero deployment.yaml:
 
 ```bash
 kubectl apply -f deployment.yaml

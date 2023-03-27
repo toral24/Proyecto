@@ -23,7 +23,7 @@
     
     4.2. [Comandos kubectl](./Comandos_kubectl.md)
 
-Kubernetes hace referencia al timonel de un barcon en Esperanto. De ahi el logo, que recuerda a un timón.
+Kubernetes hace referencia al timonel de un barco en esperanto. De ahí el logo, que recuerda a un timón.
 
 Kubernetes es una plataforma de código abierto que se utiliza para administrar contenedores de linux. Se utiliza para implementar, escalar, mantener, programar y operar automáticamente múltiples contenedores de aplicaciones en grupos de nodos.
 
@@ -36,7 +36,7 @@ Kubernetes es un sistema distribuido, en el que las aplicaciones se dividen en d
 * **Plano de control** dentro de este se pueden encontrar las siguientes aplicaciones:
 
     * **kube-apiserver** se encarga de las comunicaciones. Gestiona los permisos entre otras cosas.
-    * **kube-scheduler** se asegura de que los recusos se distribuyen de acuerdo a lo especificado.
+    * **kube-scheduler** se asegura de que los recursos se distribuyen de acuerdo a lo especificado.
 
     * **kube-control-manager** se encarga de tareas administrativas como la gestión de nodos, de trabajos, endpoints.
 
