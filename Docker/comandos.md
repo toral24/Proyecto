@@ -27,32 +27,32 @@ Descargar una imagen:
 docker pull {nombre de la imagen}
 ```
 
-Ver imagenes instaladas:
+Ver imágenes instaladas:
 
 ```bash
 docker images
 ```
 
-Iniciar una imagen, es decir, crear un conetenedor a partir de la imagen. Si la imagen no está descargada primero se descargará y luego se ejecutará:
+Iniciar una imagen, es decir, crear un contenedor a partir de la imagen. Si la imagen no está descargada primero se descargará y luego se ejecutará:
 
 ```bash
-docker run {parametros, algunos importantes son los siguientes --> -p (indicar puerto), -v (montar en un volumen), -m (limite de memoria), -c (cuota de CPU) } {nombre o id de la imagen}
+docker run {parámetros, algunos importantes son los siguientes --> -p (indicar puerto), -v (montar en un volumen), -m (límite de memoria), -c (cuota de CPU) } {nombre o id de la imagen}
 ```
 
-Motrar todos los contenedores que se estan ejecutando:
+Mostrar todos los contenedores que se están ejecutando:
 
 ```bash
 docker ps
 ```
 
-Para gestionar volumenes de docker se utiliza una serie de comandos que empiezan por `docker volume`:
+Para gestionar volúmenes de docker se utiliza una serie de comandos que empiezan por `docker volume`:
 
 * Crear un volumen:
 ```bash 
-docker volume create {Parametros} {Nombre del volumen}
+docker volume create {Parámetros} {Nombre del volumen}
 ```
 
-* Listar volumenes:
+* Listar volúmenes:
 ```bash
 docker volume ls
 ```
@@ -63,7 +63,7 @@ docker volume ls
 docker volume inspect {Nombre del volumen}
 ```
 
-* Borrar volumenes que no están siendo usados por ningún contenedor:
+* Borrar volúmenes que no están siendo usados por ningún contenedor:
 
 ```bash
 docker voume prune
@@ -80,14 +80,14 @@ Para construir una imagen a partir de un fichero dockerfile (dentro del director
 ```bash
 docker build {PATH | URL} -t {Nombre que va a recibir la imagen}
 ```
-*Si se ejecuta sin parametros se construirá una imagen a partir del dockerfile que se encuentr en el directorio actual.
+*Si se ejecuta sin parámetros se construirá una imagen a partir del dockerfile que se encuentra en el directorio actual.
 
 Ejecutar un comando en un contenedor:
 
 ```bash
-docker exec {Parametros, los más importantes son:
+docker exec {Parámetros, los más importantes son:
 -i --> Para acceder al modo interactivo, es decir, conectarse al contenedor y ejecutar los comandos que se quieran ejecutar hasta que se desconecte.
--d --> Para ejecutar en segundo plano, es decir, para ejecutra un comando que abrica que introducir después del nombre del contenedor.
+-d --> Para ejecutar en segundo plano, es decir, para ejecutar un comando que hay que introducir después del nombre del contenedor.
 } {Nombre del contenedor o id}
 ```
 
@@ -109,7 +109,7 @@ Detener un contenedor:
 docker kill {Id del contenedor}
 ```
 
-Guardar una imagen de docker con el id del conetenedor en una ruta local:
+Guardar una imagen de docker con el id del contenedor en una ruta local:
 
 ```bash
 docker commit {Id del contenedor} {usuario}/{ruta}
