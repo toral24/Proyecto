@@ -1,26 +1,5 @@
 # Comandos básicos
 
-## Índice
-
-1. [Inicio](../../../)
-2. [Guías bash y vim](../Guias_bash_y_vim/)
-
-    2.1. [Guía bash](../Guias_bash_y_vim/bash.md)
-
-    2.2. [Guía vim](../Guias_bash_y_vim/vim.md)
- 
-3. [Docker](../Docker/)
-
-    3.1. [Conceptos básicos](./Conceptos.md)
-    
-    3.2. [Comandos](./comandos.md)
-
-4. [Kubernetes](../Kubernetes/)
-
-    4.1. [Conceptos básicos](../Kubernetes/Conceptos.md)
-
-    4.2. [Comandos kubectl](../Kubernetes//Comandos_kubectl.md)
-
 Descargar una imagen:
 
 ```bash

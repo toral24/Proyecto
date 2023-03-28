@@ -2,27 +2,6 @@
 
 <img src="./kubernetes.png" width="50%">
 
-## Índice
-
-1. [Inicio](../../../)
-2. [Guías bash y vim](../Guias_bash_y_vim/)
-
-    2.1. [Guía bash](../Guias_bash_y_vim/bash.md)
-
-    2.2. [Guía vim](../Guias_bash_y_vim/vim.md)
- 
-3. [Docker](../Docker/)
-
-    3.1. [Conceptos básicos](../Docker/Conceptos.md)
-    
-    3.2. [Comandos](../Docker/comandos.md)
-
-4. [Kubernetes](.)
-
-    4.1. [Conceptos básicos](./Conceptos.md)
-    
-    4.2. [Comandos kubectl](./Comandos_kubectl.md)
-
 Kubernetes hace referencia al timonel de un barco en esperanto. De ahí el logo, que recuerda a un timón.
 
 Kubernetes es una plataforma de código abierto que se utiliza para administrar contenedores de linux. Se utiliza para implementar, escalar, mantener, programar y operar automáticamente múltiples contenedores de aplicaciones en grupos de nodos.

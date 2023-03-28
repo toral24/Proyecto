@@ -1,25 +1,5 @@
 # Conceptos básicos Kubernetes
 
-## Índice
-
-1. [Inicio](../../../)
-2. [Guías bash y vim](../Guias_bash_y_vim/)
-
-    2.1. [Guía bash](../Guias_bash_y_vim/bash.md)
-
-    2.2. [Guía vim](../Guias_bash_y_vim/vim.md)
- 
-3. [Docker](../Docker/)
-
-    3.1. [Conceptos básicos](../Docker/Conceptos.md)
-    
-    3.2. [Comandos](../Docker/comandos.md)
-
-4. [Kubernetes](.)
-
-    4.1. [Conceptos básicos](./Conceptos.md)
-
-    4.2. [Comandos kubectl](./Comandos_kubectl.md)
 ## Introducción 
 
 Kubernetes a diferencia de Docker tiene una gran variedad de componentes que generalmente se configuran con archivos .yaml en este proyecto se utilizarán varios de ellos que se encuentran en los enlaces vinculados al título de los siguientes conceptos.
@@ -69,7 +49,6 @@ Un servicio es un objeto de Kubernetes que describe como se accede a las aplicac
 ## Almacenamiento
 
 ## Configmap
-
 
 
 ## StatefulSets

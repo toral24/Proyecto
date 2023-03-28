@@ -1,27 +1,5 @@
 # Comandos útilies de bash
 
-## Índice
-
-1. [Inicio](../../../)
-
-2. [Guías bash y vim](.)
-
-    2.1. [Guía bash](./bash.md)
-
-    2.2. [Guía vim](./vim.md)
- 
-3. [Docker](../Docker/)
-
-    3.1. [Conceptos básicos](../Conceptos.md)
-    
-    3.2. [Comandos](../comandos.md)
-
-4. [Kubernetes](../Kubernetes/)
-
-    4.1. [Conceptos básicos](../Kubernetes/Conceptos.md)
-
-    4.2. [Comandos kubectl](../Kubernetes//Comandos_kubectl.md)
-
 ## Comandos
 Para copiar todos los archivos de un directorio en otro, si ya existen en el otro directorio no hace nada. Útil para hace backups. Se utiliza el siguiente comando:
 ```bash
