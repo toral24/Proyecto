@@ -4,7 +4,7 @@
 
 Kubernetes a diferencia de Docker tiene una gran variedad de componentes que generalmente se configuran con archivos .yaml en este proyecto se utilizarán varios de ellos que se encuentran en los enlaces vinculados al título de los siguientes conceptos.
 
-## Cluster
+## Clúster
 
 Un clúster es una combinación de varios nodos. Las aplicaciones individuales se ejecutan en los clústeres que se corresponde con el nivel más alto de la jerarquía de Kubernetes. 
 Los clústeres son importantes para aprovechar las ventajas que ofrece Kubernetes, porque permiten desplegar las aplicaciones sin vincularlas a máquinas concretas, ya que, su función principal es abstraer los contenedores y ejecutarlos en todos los ordenadores. Son muy flexibles al no estar sujetos a un sistema operativo concreto.
