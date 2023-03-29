@@ -92,14 +92,14 @@ Un Daemonset garantiza que un grupo de nodos, generalmente todos los de un clús
 * Monitorización de nodos.
 * Almacenamiento en el clúster.
 
-## Jobs
+## [Jobs](./Objetos_de_ejemplo/job.yaml)
 
 Un job es una forma de automatizar tareas. A diferencia de los Pods los Jobs tienen un número de ejecuciones definido y un tiempo limitado. Se suelen utilizar para tareas de mantenimiento de forma puntual y recurrente.
 A la hora de definirlos la única diferencia con los Pods es el parámetro completions que es el número de ejecuciones.
 
-## CronJob
+## [CronJob](./Objetos_de_ejemplo/cronjob.yaml)
 
-Cron job es un objeto que ejecuta un job de forma periódica según un horario programado, escrito en formato cron. Al definirse tiene un parámetro adicional a los Jobs llamado Schedule que es donde se define la periodicidad, luego ya se define el jog en jogTemplate.
+Cron job es un objeto que ejecuta un job de forma periódica según un horario programado, escrito en formato cron. Al definirse tiene un parámetro adicional a los Jobs llamado Schedule que es donde se define la periodicidad, luego ya se define el job en jobTemplate.
 
 
 ## Namespaces
