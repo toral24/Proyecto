@@ -92,11 +92,25 @@ Un Daemonset garantiza que un grupo de nodos, generalmente todos los de un clús
 * Monitorización de nodos.
 * Almacenamiento en el clúster.
 
-
 ## Jobs
+
+Un job es una forma de automatizar tareas. A diferencia de los Pods los Jobs tienen un número de ejecuciones definido y un tiempo limitado. Se suelen utilizar para tareas de mantenimiento de forma puntual y recurrente.
+A la hora de definirlos la única diferencia con los Pods es el parámetro completions que es el número de ejecuciones.
 
 ## CronJob
 
-## ReplicationController
+Cron job es un objeto que ejecuta un job de forma periódica según un horario programado, escrito en formato cron. Al definirse tiene un parámetro adicional a los Jobs llamado Schedule que es donde se define la periodicidad, luego ya se define el jog en jogTemplate.
+
 
 ## Namespaces
+
+Los namespaces o espacios de nombres son clústers virtuales, estos permiten dividir los recursos del clúster principal entre los diferentes equipos, proyectos, etc. Se utiliza principalmente en entornos con muchos usuarios.
+De forma predeterminada Kubernetes arranca tres espacios de nombre
+* Default: Es el espacio al que se asignan los objetos en los que no se especifica ningún espacio de nombres.
+* Kube-system: En este espacio se ejecutan los objetos creados por el propio sistema de Kubernetes.
+* Kube-public: Es legible por todos los usuarios (incluidos los no autenticados). Se reserva principalmente para uso interno del cúster, en caso de que algunos recursos necesiten ser visibles y legibles por todo el mundo.
+
+Con el parámetro `--namespace={namespace sobre el que se quiera ejecutar un comando}` se indica que el comando que se va a ejecutar sea dentro del espacio de nombres que se le ha indiciado.
+Por ejemplo:
+`kubectl --namespace=contabilidad get pods`
+
