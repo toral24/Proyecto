@@ -1,6 +1,6 @@
 # Docker
 
-<img src="./Docker_Logo.jpg" width="50%">
+<img src="../Imagenes/Docker_Logo.jpg" width="50%">
 
 ## ¿Qué es docker?
 

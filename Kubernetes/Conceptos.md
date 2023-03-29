@@ -2,7 +2,7 @@
 
 ## Introducción 
 
-Kubernetes a diferencia de Docker tiene una gran variedad de componentes que generalmente se configuran con archivos .yaml en este proyecto se utilizarán varios de ellos que se encuentran en los enlaces vinculados al título de los siguientes conceptos.
+Kubernetes a diferencia de Docker tiene una gran variedad de componentes. Estos pueden ser definidos mediante archivos .yaml con la herramienta kustomize, en este proyecto se utilizarán varios de estos archivos para configurar las diferentes partes de Kubernetes.
 
 ## Clúster
 
@@ -20,10 +20,7 @@ Un clúster de está formado por una unidad de control, también llamada nodo m�
 
 ## Nodo
 
-Un nodo puede ser una máquina virtual o física, dependiendo del tipo de clúster. Cada nodo está gestionado por el componente máster y contiene los servicios necesarios (container runtime, kubelet, kube-proxy) para ejecutar Pods.  
-
-## Kustomize
-
+Un nodo puede ser una máquina virtual o física, dependiendo del tipo de clúster. Los nodos pueden ser o master (plano de control) o workers (de trabajo), cada nodo de estes últimos está gestionado por el primero y contiene los servicios necesarios (container runtime, kubelet, kube-proxy) para ejecutar Pods (en el siguiente punto se profundizará más sobre los mismos).  
 
 
 ## [kubectl](./Comandos_kubectl.md)
@@ -40,11 +37,18 @@ Los Pods al igual que los contenedores son entidades relativamente efímeras. Cu
 
 Los Pods son un modelo del patrón de múltiples procesos de cooperación que forman una unidad de servicio cohesiva. Simplifican la implementación y la administración de las aplicaciones proporcionando una abstracción de mayor nivel que el conjunto de las aplicaciones que lo constituyen.
 
+## Almacenamiento
+
 ## [Volume](./ejemplo-PersistentVolume.yaml)
 
 Los volúmenes de Kubernets son una abstracción cuyo objetivo es evitar la pérdida de datos importantes, ya que, los contenedores y los Pods son efímeros se perdería toda la información con la que se trabaja dentro de ellos. Un volumen es un directorio accesible para los contenedores de un Pod.
 
 Los volúmenes de Kubernetes se pueden dividir en persistentes y efímeros, estos últimos tiene el mismo tiempo de vida que el pod, mientras que los persistentes son preservados a lo largo de los reinicios de los contenedores, además se deben definir por un fichero .yaml como el que se encuentra en el enlace del título.
+
+
+## Kustomize
+
+Es una herramienta de Kubernetes que permite crear objetos a través de un archivo llamado kustomiztion.yaml. De esta forma se puede personalizar la configuración de una aplicación sin tocar los archivos originales de los objetos.
 
 ## [ReplicaSet](./ejemplo-replicaset.yaml)
 
@@ -66,10 +70,6 @@ Es un objeto que gestiona el acceso a los servicios de un clúster. Ingress prop
 Ingress expone rutas http y https al exterior que permite acceder a los servicios del clúster. El enrutamiento se controla mediante reglas definidas en un Ingress resource.
 
 ## Secret
-
-
-
-## Almacenamiento
 
 ## Configmap
 

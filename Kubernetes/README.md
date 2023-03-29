@@ -1,31 +1,12 @@
 # Kubernetes
 
-<img src="./kubernetes.png" width="50%">
+<img src="../Imagenes/kubernetes.png" width="50%">
 
 Kubernetes hace referencia al timonel de un barco en esperanto. De ahí el logo, que recuerda a un timón.
 
-Kubernetes es una plataforma de código abierto que se utiliza para administrar contenedores de linux. Se utiliza para implementar, escalar, mantener, programar y operar automáticamente múltiples contenedores de aplicaciones en grupos de nodos.
+Kubernetes es una plataforma de código abierto que se utiliza para administrar contenedores de linux. Se utiliza para implementar, escalar, mantener, programar y operar automáticamente múltiples contenedores de aplicaciones en grupos de nodos. Por otro lado, facilita la automatización y configuración declarativa.
 
-## Cómo funciona
+Kubernetes está escrito en el lenguaje de programación Go, fue desarrollado por Google y liberado en el año 2014. Fue diseñado para utilizarse tanto en la nube como en ordenadores o centros de datos locales.
 
-<img src="./componentes_kubernetes.png" width="50%">
-
-Kubernetes es un sistema distribuido, en el que las aplicaciones se dividen en dos grupos: 
-
-* **Plano de control** dentro de este se pueden encontrar las siguientes aplicaciones:
-
-    * **kube-apiserver** se encarga de las comunicaciones. Gestiona los permisos entre otras cosas.
-    * **kube-scheduler** se asegura de que los recursos se distribuyen de acuerdo a lo especificado.
-
-    * **kube-control-manager** se encarga de tareas administrativas como la gestión de nodos, de trabajos, endpoints.
-
-    * **etcd** es la base de datos donde se guarda todo.
-
-* **Nodo** en este nivel se puede encontrar:
-    * **kubelet** es un agente que debe ejecutarse en todos y cada uno de los nodos para permitir la gestión local de acuerdo a lo que diga el scheduler.
-
-    * **kube-proxy** Realiza las tareas de la red.
-
-    * **Container runtime** es el software encargado de ejecutar los contenedores, soporta varios tipos de contenedores (Docker, containerd, cri-o, rktlet y cualquier implementación de la interfaz de runtime de contenedores de Kubernetes).
 
 
