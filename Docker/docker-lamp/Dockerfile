@@ -11,7 +11,7 @@ RUN apt-get update \
     && apt-get install -y libonig-dev \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install zip
-
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
