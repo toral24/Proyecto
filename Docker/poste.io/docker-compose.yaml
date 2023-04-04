@@ -1,0 +1,23 @@
+version: "3.4"
+services:
+  poste:
+    image: analogic/poste.io
+    restart: always
+    expose:
+      - 25
+      - 8181
+      - 4443
+      - 110
+      - 143
+      - 465
+      - 587
+      - 993
+      - 995
+    volumes:
+      - mail:/var/docker/
+    networks:
+      - default
+    environment:
+      - HTTPS_PORT=4443
+      - HTTP_PORT=8181
+      - DISABLE_CLAMAV=TRUE

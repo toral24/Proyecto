@@ -29,5 +29,15 @@ Las ventajas que presenta docker frente a un hipervisor en el que se ejecutan m�
 
 Uno de los problemas que plantea era la comunicación entre contenedores cuando tuvieran que coordinarse o comunicarse entre ellos. Esto empujo a la creación de Docker Swarm y de [Kubernetes](../Kubernetes/).
 
+## Contenido páctico del proyecto
+
+En este proyecto se van a levantar ocho contenedores (tres de los cuales pertenecen a las estructura LAMP y dos a OpenLDAP) con la herramienta docker-compose, los ficheros .yaml se encuentran en las correspondientes carpetas:
+
+* [Estructura LAMP](./docker-lamp/)
+* [Poste.io](./poste.io/)
+* [Portainer](./portainer/)
+* [OpenLDAP](./openldap/)
+* [HomeAssistant](./homeassistant/)
+
 
 
