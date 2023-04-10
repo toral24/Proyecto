@@ -1,5 +1,11 @@
 # Comandos kubectl
 
+Aplicar un manifiesto de kubernetes:
+
+```bash
+kubectl apply -f ¨{Manifiesto de kubernetes}
+```
+
 Información del clúster:
 
 ```bash
@@ -68,10 +74,4 @@ Crear un secret:
 
 ```bash
 kubectl create secret generic mysql-pass --from-literal=password=mypassword
-```
-
-Aplicar el contenido de un fichero deployment.yaml:
-
-```bash
-kubectl apply -f deployment.yaml
 ```
