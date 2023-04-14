@@ -36,6 +36,10 @@ De esta forma cuando se ejecute `docker compose up -d` se montará la carpeta `.
 
 ## Dockerfile
 
-Para crear imágenes de docker se utilizan ficheros llamados dockerfile, que contienen una serie de instrucciones de como generar la imagen.
+Un Dockerfile es un script que se utiliza para construir una imagen de docker personalizándola con ciertas instrucciones y que se ejecutará con el comando docker build. Algunas de estas instrucciones son las siguientes (Anónimo, 2021):
 
-Lo primero en un dockerfile sería indicar con una línea que inicie por `FROM` la imagen base. A partir de hay se pueden indicar comandos de bash en líneas que inicien por `RUN` para más información ver el siguiente [dockerfile](./dockerfile)
+* FROM: Se utiliza para indicar la imagen a partir de la cual se construye la nueva imagen.
+* LABEL: Par clave-valor que permite añadir etiquetas.
+* RUN: Se utiliza para ejecutar un comando durante el proceso de construcción.
+* ADD: Se utiliza para copiar archivos o directorios desde un origen indicado con “src” hacia un destino indicado con dest. También se puede configurar la propiedad del mismo.
+* ENV: Con el se define una variable de entorno que se puede utilizar durante la etapa de construcción.
