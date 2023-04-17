@@ -1,8 +1,18 @@
-# Conceptos básicos Kubernetes
+# Objetos de Kubernetes
 
-## Introducción 
+Los objetos de Kubernetes son entidades persistentes dentro del sistema de Kubernetes, que se utilizan para representar el estado deseado del clúster. En ellos se especifica que contenedores se van a correr, de que recursos van a disponer y que políticas llevar a cabo con dichos contenedores (reinicio, actualización, …).
+Todos los objetos de Kubernetes incluyen el campo spec en el que se especifica el estado deseado del objeto. Lo más habitual para definir un objeto de Kubernetes es utilizar un archivo .yaml, también conocidos como manifiestos, en el que se proporciona toda la información. Para crear el objeto definido en dicho archivo se utiliza el comando de kubectl kubectl apply -f “archivo.yaml” y la api de Kubernetes convierte está información a JSON y crea el objeto si no ha habido ningún error. El archivo .yaml debe contener obligatoriamente los siguientes campos:
+* apiVersision: Versión de la API de Kubernetes.
+* Kind: Clase de objeto.
+* Metadata: Permite identificar el objeto incluyendo las etiquetas name, UID y/o namespace.
 
-Kubernetes a diferencia de Docker tiene una gran variedad de componentes. Estos pueden ser definidos mediante archivos .yaml con la herramienta kustomize, en este proyecto se utilizarán varios de estos archivos para configurar las diferentes partes de Kubernetes.
+## Nodo
+
+Un nodo puede ser una máquina virtual o física, dependiendo del tipo de clúster. Los nodos pueden ser:
+* **máster** o plano de control: se encarga de la administración del clúster.
+* **workers** o de trabajo: cada nodo de estos últimos está gestionado por el primero y contiene los servicios necesarios (container runtime, kubelet, kube-proxy) para ejecutar Pods.
+
+En el siguiente punto se profundizará más sobre los mismos.
 
 ## Clúster
 
@@ -17,11 +27,6 @@ Un clúster de está formado por una unidad de control, también llamada nodo m�
 * Los nodos de trabajo ejecutan tareas y aplicaciones que les asigna la unidad de control e incluyen:
     * Kubelet: es un componente de los nodos de trabajo que garantiza que cada contenedor se ejecute en un pod. Para ello interactúa con Docker Engine. Es el implementador principal de la API de Kubernetes a nivel de pod impulsando la ejecución del contenedor, y decidiendo que pueden ejecutar los Pods en un nodo determinado y que no.
     * Kube-proxy: Garantiza el cumplimiento de las reglas de la red. Es también el responsable de realizar el reenvío de la conexión
-
-## Nodo
-
-Un nodo puede ser una máquina virtual o física, dependiendo del tipo de clúster. Los nodos pueden ser o master (plano de control) o workers (de trabajo), cada nodo de estes últimos está gestionado por el primero y contiene los servicios necesarios (container runtime, kubelet, kube-proxy) para ejecutar Pods (en el siguiente punto se profundizará más sobre los mismos).  
-
 
 ## [kubectl](./Objetos_de_ejemplo/Comandos_kubectl.md)
 
