@@ -33,3 +33,4 @@ Un clúster de está formado por una unidad de control, también llamada nodo m�
     * Kube-proxy: Garantiza el cumplimiento de las reglas de la red. Es también el responsable de realizar el reenvío de la conexión
 
 
+

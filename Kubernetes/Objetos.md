@@ -4,7 +4,19 @@ Los objetos de Kubernetes son entidades persistentes dentro del sistema de Kuber
 Todos los objetos de Kubernetes incluyen el campo spec en el que se especifica el estado deseado del objeto. Lo más habitual para definir un objeto de Kubernetes es utilizar un archivo .yaml, también conocidos como manifiestos, en el que se proporciona toda la información. Para crear el objeto definido en dicho archivo se utiliza el comando de kubectl kubectl apply -f “archivo.yaml” y la api de Kubernetes convierte está información a JSON y crea el objeto si no ha habido ningún error. El archivo .yaml debe contener obligatoriamente los siguientes campos:
 * apiVersision: Versión de la API de Kubernetes.
 * Kind: Clase de objeto.
-* Metadata: Permite identificar el objeto incluyendo las etiquetas name, UID y/o namespace.
+* Metadata: Permite identificar el objeto incluyendo las etiquetas name, UID y/o namespace (en el siguiente punto se analizan estos últimos).
+
+## Namespaces
+
+Los namespaces o espacios de nombres son clústers virtuales, estos permiten dividir los recursos del clúster principal entre los diferentes equipos, proyectos, etc. Se utiliza principalmente en entornos con muchos usuarios.
+De forma predeterminada Kubernetes arranca tres espacios de nombre
+* Default: Es el espacio al que se asignan los objetos en los que no se especifica ningún espacio de nombres.
+* Kube-system: En este espacio se ejecutan los objetos creados por el propio sistema de Kubernetes.
+* Kube-public: Es legible por todos los usuarios (incluidos los no autenticados). Se reserva principalmente para uso interno del cúster, en caso de que algunos recursos necesiten ser visibles y legibles por todo el mundo.
+
+Con el parámetro `--namespace={namespace sobre el que se quiera ejecutar un comando}` se indica que el comando que se va a ejecutar sea dentro del espacio de nombres que se le ha indiciado.
+Por ejemplo:
+`kubectl --namespace=contabilidad get pods`
 
 ## [Pod](./Objetos_de_ejemplo/pod.yaml)
 
@@ -25,10 +37,6 @@ Los volúmenes de Kubernetes se pueden dividir en persistentes y efímeros, esto
 ## [Deployment](./Objetos_de_ejemplo/deployment.yaml)
 
 Un controlador de Deployment proporciona actualizaciones declarativas para los Pods y los ReplicaSets. En el mismo archivo se especifica un estado deseado y el controlador de deployment se encarga de cambiar del estado actual al deseado de forma controlada.
-
-## Kustomize
-
-Es una herramienta de Kubernetes que permite crear objetos a través de un archivo llamado kustomiztion.yaml. De esta forma se puede personalizar la configuración de una aplicación sin tocar los archivos originales de los objetos.
 
 ## [ReplicaSet](./Objetos_de_ejemplo/replicaset.yaml)
 
@@ -80,16 +88,4 @@ A la hora de definirlos la única diferencia con los Pods es el parámetro compl
 
 Cron job es un objeto que ejecuta un job de forma periódica según un horario programado, escrito en formato cron. Al definirse tiene un parámetro adicional a los Jobs llamado Schedule que es donde se define la periodicidad, luego ya se define el job en jobTemplate.
 
-
-## Namespaces
-
-Los namespaces o espacios de nombres son clústers virtuales, estos permiten dividir los recursos del clúster principal entre los diferentes equipos, proyectos, etc. Se utiliza principalmente en entornos con muchos usuarios.
-De forma predeterminada Kubernetes arranca tres espacios de nombre
-* Default: Es el espacio al que se asignan los objetos en los que no se especifica ningún espacio de nombres.
-* Kube-system: En este espacio se ejecutan los objetos creados por el propio sistema de Kubernetes.
-* Kube-public: Es legible por todos los usuarios (incluidos los no autenticados). Se reserva principalmente para uso interno del cúster, en caso de que algunos recursos necesiten ser visibles y legibles por todo el mundo.
-
-Con el parámetro `--namespace={namespace sobre el que se quiera ejecutar un comando}` se indica que el comando que se va a ejecutar sea dentro del espacio de nombres que se le ha indiciado.
-Por ejemplo:
-`kubectl --namespace=contabilidad get pods`
 

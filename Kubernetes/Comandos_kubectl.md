@@ -1,6 +1,5 @@
 # Comandos kubectl
 
-Kubectl es una interfaz de línea de comandos que se instala en un equipo cliente. Permite gestionar los recursos que disponen los clústers de kubernetes.
 
 Aplicar un manifiesto de kubernetes:
 
