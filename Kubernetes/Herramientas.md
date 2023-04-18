@@ -1,5 +1,7 @@
 # Herramientas de Kubernetes
 
+Kubernetes dispone de una serie de herramientas con diferentes usos que permiten administrar los clústers (kubectl y kubeadm), levantar clústers locales (kubeadm, kind, minikube, microk8s, …), facilitar la instalación de software (helm), etc.
+
 ## Kubectl
 
 Kubectl es una interfaz de línea de comandos que se instala en un equipo cliente. Permite gestionar los recursos que disponen los clústers de kubernetes.
@@ -40,6 +42,17 @@ kind create cluster –config=config.yaml
 ```
 
 ## Helm
+
+También conocido como el gestor de paquetes de Kubernetes, Helm permite la configuración e implementación de aplicaciones y servicios en clústers de Kubernetes de una manera más sencilla y eficiente. A la hora de utilizar Helm se pueden dar dos casos (KeepCoding (e), 2022):
+* Utilizar charts creados y diseñados por otros.
+* Diseñar charts propios.
+Los charts de Helm son paquetes de manifiestos de Kubernetes que se encargan de la descripción de un conjunto relacionado de recursos para la ejecución de una aplicación, herramienta o servicio. Ofrecen gran facilidad para crear, compartir, publicar y versionar dentro del sistema de Helm.
+**Estructura de un chart de Helm**:
+* **Directorio templates**: Donde se guardarán los ficheros de templates.
+* **Values.yaml**: Contiene todos los valores por defecto.
+* **Fichero Charts.yaml**: Define al chart de Helm.
+* **Directorio Charts**: Tiene la capacidad de contener otros charts, que actuarán como dependencias.
+
 
 ## Kustomize
 
