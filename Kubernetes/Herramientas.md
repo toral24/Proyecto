@@ -9,6 +9,7 @@ Kubectl es una interfaz de línea de comandos que se instala en un equipo client
 ## Kubeadm
 
 Kubeadm por otra parte se encarga de la creación y despliegue de clústers, del mantenimiento y la gestión de estos. En cuanto al diseño esta herramienta solo se encarga del arranque de las maquinas. Puede utilizarse para automatizar procesos de ajuste de un clúster.
+
 **Características**:
 * Compatibilidad: Se puede instalar en todo tipo de máquinas, tanto virtuales como físicas, como servidores cloud.
 * Desarrollo local: Permite desarrollar localmente clústers con dependencias mínimas en poco tiempo para labores de prueba y desarrollo.
@@ -43,10 +44,12 @@ kind create cluster –config=config.yaml
 
 ## Helm
 
-También conocido como el gestor de paquetes de Kubernetes, Helm permite la configuración e implementación de aplicaciones y servicios en clústers de Kubernetes de una manera más sencilla y eficiente. A la hora de utilizar Helm se pueden dar dos casos (KeepCoding (e), 2022):
+También conocido como el gestor de paquetes de Kubernetes, Helm permite la configuración e implementación de aplicaciones y servicios en clústers de Kubernetes de una manera más sencilla y eficiente. A la hora de utilizar Helm se pueden dar dos casos:
 * Utilizar charts creados y diseñados por otros.
 * Diseñar charts propios.
+
 Los charts de Helm son paquetes de manifiestos de Kubernetes que se encargan de la descripción de un conjunto relacionado de recursos para la ejecución de una aplicación, herramienta o servicio. Ofrecen gran facilidad para crear, compartir, publicar y versionar dentro del sistema de Helm.
+
 **Estructura de un chart de Helm**:
 * **Directorio templates**: Donde se guardarán los ficheros de templates.
 * **Values.yaml**: Contiene todos los valores por defecto.
@@ -56,4 +59,4 @@ Los charts de Helm son paquetes de manifiestos de Kubernetes que se encargan de 
 
 ## Kustomize
 
-Es una herramienta de Kubernetes que permite crear objetos a través de un archivo llamado kustomiztion.yaml. De esta forma se puede personalizar la configuración de una aplicación sin tocar los archivos originales de los objetos.
+Junto con Kubectl se incluye la herramienta Kustomize que permite aplicar simultáneamente la configuración de varios objetos de Kubernetes. A partir de un archivo .yaml en el que se especifican los recursos que se van a utilizar (que son otros archivos .yaml en los que se definen los diferentes objetos) se pueden aplicar todos estos recursos directamente con el comando kubectl apply -k desde el directorio en el que se deben encontrar todos los archivos. Además, Kustomize permite  aplicar aplicar configuraciones comunes y crear otros archivos como por ejemplo secrets o deployments a partir de la información que se le proporciona. 
