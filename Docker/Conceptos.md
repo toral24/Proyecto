@@ -43,3 +43,6 @@ Un Dockerfile es un script que se utiliza para construir una imagen de docker pe
 * RUN: Se utiliza para ejecutar un comando durante el proceso de construcción.
 * ADD: Se utiliza para copiar archivos o directorios desde un origen indicado con “src” hacia un destino indicado con dest. También se puede configurar la propiedad del mismo.
 * ENV: Con el se define una variable de entorno que se puede utilizar durante la etapa de construcción.
+
+
+[volver](../../)

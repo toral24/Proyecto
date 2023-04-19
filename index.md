@@ -14,9 +14,9 @@
 
     2.4 [HomeAssistant](./Docker/homeassistant/)
 
-    2.5 [OpenLDAP](/Docker/openldap/)
+    2.5 [OpenLDAP](./Docker/openldap/)
 
-    2.6 [Portainer](/Docker/portainer/)
+    2.6 [Portainer](./Docker/portainer/)
 
     2.7 [Poste.io](./Docker/poste.io/)
 
@@ -26,6 +26,6 @@
 
     3.2. [Comandos kubectl](./Kubernetes/Comandos_kubectl.md)
 
-    3.3 [Objetos](/Kubernetes/Objetos.md)
+    3.3 [Objetos](./Kubernetes/Objetos.md)
 
     

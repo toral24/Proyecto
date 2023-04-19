@@ -33,11 +33,13 @@ Uno de los problemas que plantea era la comunicación entre contenedores cuando 
 
 En este proyecto se van a levantar ocho contenedores (tres de los cuales pertenecen a las estructura LAMP y dos a OpenLDAP) con la herramienta docker-compose, los ficheros .yaml se encuentran en las correspondientes carpetas:
 
-* [Estructura LAMP](./LAMP//)
-* [Poste.io](./Poste.io//)
-* [Portainer](./Portainer//)
-* [OpenLDAP](./OpenLDAP//)
-* [HomeAssistant](./HomeAssistant//)
+* [Estructura LAMP](./LAMP/)
+* [Poste.io](./poste.io/)
+* [Portainer](./portainer/)
+* [OpenLDAP](./openldap/)
+* [HomeAssistant](./homeassistant/)
+
+[volver](../../)
 
 
 
