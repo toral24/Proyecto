@@ -32,5 +32,4 @@ Un clúster de está formado por una unidad de control, también llamada nodo m�
     * **Kubelet**: es un componente de los nodos de trabajo que garantiza que cada contenedor se ejecute en un pod. Para ello interactúa con Docker Engine. Es el implementador principal de la API de Kubernetes a nivel de pod impulsando la ejecución del contenedor, y decidiendo que pueden ejecutar los Pods en un nodo determinado y que no.
     * **Kube-proxy**: Garantiza el cumplimiento de las reglas de la red. Es también el responsable de realizar el reenvío de la conexión
 
-
-
+[volver](../index.md)

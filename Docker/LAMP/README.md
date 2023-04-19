@@ -74,4 +74,4 @@ RUN docker-php-ext-install gd
 
 RUN a2enmod rewrite
 ```
-[volver](../../)
+[volver](../../index.md)

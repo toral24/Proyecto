@@ -87,3 +87,5 @@ A la hora de definirlos la única diferencia con los Pods es el parámetro compl
 ## CronJob
 
 Cron job es un objeto que ejecuta un job de forma periódica según un horario programado, escrito en formato cron. Al definirse tiene un parámetro adicional a los Jobs llamado Schedule que es donde se define la periodicidad, luego ya se define el job en jobTemplate.
+
+[volver](../index.md)

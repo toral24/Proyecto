@@ -76,3 +76,5 @@ Crear un secret:
 ```bash
 kubectl create secret generic mysql-pass --from-literal=password=mypassword
 ```
+
+[volver](../index.md)

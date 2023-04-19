@@ -1,4 +1,4 @@
-0. [Introducción](./README.md)
+0. [Introducción](./)
 
 1. [Material complementario](./Material_complementario/)
 

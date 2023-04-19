@@ -39,7 +39,7 @@ En este proyecto se van a levantar ocho contenedores (tres de los cuales pertene
 * [OpenLDAP](./openldap/)
 * [HomeAssistant](./homeassistant/)
 
-[volver](../../)
+[volver](../index.md)
 
 
 
