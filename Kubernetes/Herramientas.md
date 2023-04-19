@@ -59,4 +59,39 @@ Los charts de Helm son paquetes de manifiestos de Kubernetes que se encargan de 
 
 ## Kustomize
 
-Junto con Kubectl se incluye la herramienta Kustomize que permite aplicar simultáneamente la configuración de varios objetos de Kubernetes. A partir de un archivo .yaml en el que se especifican los recursos que se van a utilizar (que son otros archivos .yaml en los que se definen los diferentes objetos) se pueden aplicar todos estos recursos directamente con el comando kubectl apply -k desde el directorio en el que se deben encontrar todos los archivos. Además, Kustomize permite  aplicar aplicar configuraciones comunes y crear otros archivos como por ejemplo secrets o deployments a partir de la información que se le proporciona. 
+Junto con Kubectl se incluye la herramienta Kustomize que permite aplicar simultáneamente la configuración de varios objetos de Kubernetes. A partir de un archivo .yaml como el siguiente:
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:  
+  - mysql-deployment.yaml
+  - mysql-service.yaml  
+  - wordpress-deployment.yaml
+  - wordpress-service.yaml
+```
+en el cual se especifican los recursos que se van a utilizar (que son otros archivos .yaml en los que se definen los diferentes objetos) se pueden aplicar todos estos recursos directamente con el comando:
+```bash
+kubectl apply -k
+```
+desde el directorio en el que se deben encontrar todos los archivos. Además, Kustomize permite  aplicar aplicar configuraciones comunes y crear otros archivos como por ejemplo secrets o deployments a partir de la información que se le proporciona. Como en el siguiente ejemplo:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dev
+commonLabels:
+  env: dev
+namePrefix: dev-
+bases:
+  - ../base
+secretGenerator:
+  - name: dbpassword
+    literals:
+      - "password=Passw0rd"
+resources:
+  - namespace.yaml
+patchesStrategicMerge:
+  - mysql-deployment-patch.yaml
+  - wordpress-deployment-patch.yaml
+```
+
