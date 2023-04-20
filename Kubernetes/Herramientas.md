@@ -11,8 +11,8 @@ Kubectl es una interfaz de línea de comandos que se instala en un equipo client
 Kubeadm por otra parte se encarga de la creación y despliegue de clústers, del mantenimiento y la gestión de estos. En cuanto al diseño esta herramienta solo se encarga del arranque de las maquinas. Puede utilizarse para automatizar procesos de ajuste de un clúster.
 
 **Características**:
-* Compatibilidad: Se puede instalar en todo tipo de máquinas, tanto virtuales como físicas, como servidores cloud.
-* Desarrollo local: Permite desarrollar localmente clústers con dependencias mínimas en poco tiempo para labores de prueba y desarrollo.
+* <u>Compatibilidad</u>: Se puede instalar en todo tipo de máquinas, tanto virtuales como físicas, como servidores cloud.
+* <u>Desarrollo local</u>: Permite desarrollar localmente clústers con dependencias mínimas en poco tiempo para labores de prueba y desarrollo.
 * Contribuye al funcionamiento de otras herramientas de más alto nivel.
 * Es una herramienta ligera.
 ## Kind
@@ -56,10 +56,10 @@ También conocido como el gestor de paquetes de Kubernetes, Helm permite la conf
 Los charts de Helm son paquetes de manifiestos de Kubernetes que se encargan de la descripción de un conjunto relacionado de recursos para la ejecución de una aplicación, herramienta o servicio. Ofrecen gran facilidad para crear, compartir, publicar y versionar dentro del sistema de Helm.
 
 **Estructura de un chart de Helm**:
-* **Directorio templates**: Donde se guardarán los ficheros de templates.
-* **Values.yaml**: Contiene todos los valores por defecto.
-* **Fichero Charts.yaml**: Define al chart de Helm.
-* **Directorio Charts**: Tiene la capacidad de contener otros charts, que actuarán como dependencias.
+* <u>Directorio templates</u>: Donde se guardarán los ficheros de templates.
+* <u>Values.yaml</u>: Contiene todos los valores por defecto.
+* <u>Fichero Charts.yaml</u>: Define al chart de Helm.
+* <u>Directorio Charts</u>: Tiene la capacidad de contener otros charts, que actuarán como dependencias.
 
 
 ## Kustomize

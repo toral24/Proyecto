@@ -2,17 +2,17 @@
 
 Los objetos de Kubernetes son entidades persistentes dentro del sistema de Kubernetes, que se utilizan para representar el estado deseado del clúster. En ellos se especifica que contenedores se van a correr, de que recursos van a disponer y que políticas llevar a cabo con dichos contenedores (reinicio, actualización, …).
 Todos los objetos de Kubernetes incluyen el campo spec en el que se especifica el estado deseado del objeto. Lo más habitual para definir un objeto de Kubernetes es utilizar un archivo .yaml, también conocidos como manifiestos, en el que se proporciona toda la información. Para crear el objeto definido en dicho archivo se utiliza el comando de kubectl kubectl apply -f “archivo.yaml” y la api de Kubernetes convierte está información a JSON y crea el objeto si no ha habido ningún error. El archivo .yaml debe contener obligatoriamente los siguientes campos:
-* apiVersision: Versión de la API de Kubernetes.
-* Kind: Clase de objeto.
-* Metadata: Permite identificar el objeto incluyendo las etiquetas name, UID y/o namespace (en el siguiente punto se analizan estos últimos).
+* <u>apiVersision</u>: Versión de la API de Kubernetes.
+* <u>Kind</u>: Clase de objeto.
+* <u>Metadata</u>: Permite identificar el objeto incluyendo las etiquetas name, UID y/o namespace (en el siguiente punto se analizan estos últimos).
 
 ## Namespaces
 
 Los namespaces o espacios de nombres son clústers virtuales, estos permiten dividir los recursos del clúster principal entre los diferentes equipos, proyectos, etc. Se utiliza principalmente en entornos con muchos usuarios.
 De forma predeterminada Kubernetes arranca tres espacios de nombre
-* Default: Es el espacio al que se asignan los objetos en los que no se especifica ningún espacio de nombres.
-* Kube-system: En este espacio se ejecutan los objetos creados por el propio sistema de Kubernetes.
-* Kube-public: Es legible por todos los usuarios (incluidos los no autenticados). Se reserva principalmente para uso interno del cúster, en caso de que algunos recursos necesiten ser visibles y legibles por todo el mundo.
+* <u>Default</u>: Es el espacio al que se asignan los objetos en los que no se especifica ningún espacio de nombres.
+* <u>Kube-system</u>: En este espacio se ejecutan los objetos creados por el propio sistema de Kubernetes.
+* <u>Kube-public</u>: Es legible por todos los usuarios (incluidos los no autenticados). Se reserva principalmente para uso interno del cúster, en caso de que algunos recursos necesiten ser visibles y legibles por todo el mundo.
 
 Con el parámetro `--namespace={namespace sobre el que se quiera ejecutar un comando}` se indica que el comando que se va a ejecutar sea dentro del espacio de nombres que se le ha indiciado.
 Por ejemplo:
@@ -31,8 +31,8 @@ Los Pods son un modelo del patrón de múltiples procesos de cooperación que fo
 ## Volume
 Los volúmenes de Kubernets son una abstracción cuyo objetivo es evitar la pérdida de datos importantes, ya que, los contenedores y los Pods son efímeros se perdería toda la información con la que se trabaja dentro de ellos. Un volumen es un directorio accesible para los contenedores de un Pod.
 Los volúmenes de Kubernetes se pueden dividir en:
-* Efímeros: Tienen la misma duración que el pod, para usarlos al definir el volumen en el pod en lugar de indicar una ruta dentro del cúster hay que añadir `emptyDir: {}`.
-* Persistentes: Un **volumen persistente** (PV), por otro lado, es un recurso de almacenamiento que se define a partir de un manifiesto de kubernetes y que puede ser almacenado localmente en los nodos, en un repositorio de github o en algún servicio de cloud. 
+* <u>Efímeros</u>: Tienen la misma duración que el pod, para usarlos al definir el volumen en el pod en lugar de indicar una ruta dentro del cúster hay que añadir `emptyDir: {}`.
+* <u>Persistentes</u>: Un **volumen persistente** (PV), por otro lado, es un recurso de almacenamiento que se define a partir de un manifiesto de kubernetes y que puede ser almacenado localmente en los nodos, en un repositorio de github o en algún servicio de cloud. 
 Existe una capa de abstracción entre los Pods y los volúmenes persistentes llamada **Persistent Volume Claim** (PVC) que se vincula automáticamente a volumen persistente que tenga un storgeClass y accessMode compatible si no se especifica en el volumen persistente directamente los PVC que tiene vinculados (que es lo recomendable). Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor.
 
 
