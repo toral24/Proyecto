@@ -29,10 +29,12 @@ Los Pods al igual que los contenedores son entidades relativamente efímeras. Cu
 Los Pods son un modelo del patrón de múltiples procesos de cooperación que forman una unidad de servicio cohesiva. Simplifican la implementación y la administración de las aplicaciones proporcionando una abstracción de mayor nivel que el conjunto de las aplicaciones que lo constituyen.
 
 ## Volume
-
 Los volúmenes de Kubernets son una abstracción cuyo objetivo es evitar la pérdida de datos importantes, ya que, los contenedores y los Pods son efímeros se perdería toda la información con la que se trabaja dentro de ellos. Un volumen es un directorio accesible para los contenedores de un Pod.
+Los volúmenes de Kubernetes se pueden dividir en:
+* Efímeros: Tienen la misma duración que el pod, para usarlos al definir el volumen en el pod en lugar de indicar una ruta dentro del cúster hay que añadir `emptyDir: {}`.
+* Persistentes: Un **volumen persistente** (PV), por otro lado, es un recurso de almacenamiento que se define a partir de un manifiesto de kubernetes y que puede ser almacenado localmente en los nodos, en un repositorio de github o en algún servicio de cloud. 
+Existe una capa de abstracción entre los Pods y los volúmenes persistentes llamada **Persistent Volume Claim** (PVC) que se vincula automáticamente a volumen persistente que tenga un storgeClass y accessMode compatible si no se especifica en el volumen persistente directamente los PVC que tiene vinculados (que es lo recomendable). Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor.
 
-Los volúmenes de Kubernetes se pueden dividir en persistentes y efímeros, estos últimos tiene el mismo tiempo de vida que el pod, mientras que los persistentes son preservados a lo largo de los reinicios de los contenedores, además se deben definir por un fichero .yaml como el que se encuentra en el enlace del título.
 
 ## Deployment
 
