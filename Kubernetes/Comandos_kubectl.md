@@ -47,6 +47,7 @@ Con `kubectl port-forward` se puede acceder a una aplicación desde el navegador
 ```bash
 kubectl port-forward {nombre del contenedor} {puerto local}:{puerto exterior}
 ```
+
 Para exponer un recurso de Kubernetes como un nuevo servicio se utiliza el comando `kubectl expose`. Algunos ejemplos útiles de este comando:
 * Crear un servicio a partir de un manifiesto indicando los puertos:
 ```bash
@@ -64,7 +65,9 @@ kubectl exponse pod {nombre del pod} --port={puerto local por el que se quiere e
 ```bash
 kubectl expose deployment {nombre del deployment} --port={puerto local por el que se quiere exponer} –target-port={puerto externo}.
 ```
+
 El comando `kubectl delete` se utiliza para eliminar recursos se puede realizar a partir del nombre o de un manifiesto:
+
 * Eliminar un recurso a partir de un manifiesto:
 ```bash
 kubectl delete -f {Manifiesto de Kubernetes del objeto que se quiere borrar}
@@ -73,7 +76,9 @@ kubectl delete -f {Manifiesto de Kubernetes del objeto que se quiere borrar}
 ```bash
 kubectl delete {Nombre del recurso que se quiere borrar}
 ```
+
 Para ejecutar comando dentro de un pod existe el comando `kubectl exec`. Algunos casos de uso:
+
 * Ejecutar un comando dentro del pod:
 ```bash
 Kubectl exec {Nombre del pod} -- {comando}
