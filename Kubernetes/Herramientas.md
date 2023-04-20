@@ -42,6 +42,11 @@ Y pasándolo como parámetro al comando anterior:
 kind create cluster –config=config.yaml
 ```
 
+Si se quiere borrar el clúster se puede pasar el siguiente comando:
+```bash
+kind delete cluster
+```
+
 ## Helm
 
 También conocido como el gestor de paquetes de Kubernetes, Helm permite la configuración e implementación de aplicaciones y servicios en clústers de Kubernetes de una manera más sencilla y eficiente. A la hora de utilizar Helm se pueden dar dos casos:

@@ -41,6 +41,7 @@ kubectl get deployments
 ```bash
 kubectl get ep o endpoint
 ```
+
 Con `kubectl port-forward` se puede acceder a una aplicación desde el navegador indicando el puerto y el nombre del contenedor su sintaxis es la siguiente:
 
 ```bash
