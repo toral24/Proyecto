@@ -35,16 +35,26 @@ Los volúmenes de Kubernetes se pueden dividir en:
 * <u>Persistentes</u>: Un **volumen persistente** (PV), por otro lado, es un recurso de almacenamiento que se define a partir de un manifiesto de kubernetes y que puede ser almacenado localmente en los nodos, en un repositorio de github o en algún servicio de cloud. 
 Existe una capa de abstracción entre los Pods y los volúmenes persistentes llamada **Persistent Volume Claim** (PVC) que se vincula automáticamente a volumen persistente que tenga un storgeClass y accessMode compatible si no se especifica en el volumen persistente directamente los PVC que tiene vinculados (que es lo recomendable). Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor.
 
+## ReplicaSet
+
+Consiste en mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, para garantizar la disponibilidad de las aplicaciones. Permite tolerancia a fallos, ya que, si algún pod falla estarán los demás disponibles y se puede modificar el número de replicas dinámicamente. Estas réplicas se ejecutan en nodos distintos del clúster, por lo qué, en caso de fallar uno de los mismos también se garantiza tolerancia a fallos físicos de estos nodos.
+
+A la hora de definir un replicaset existen los siguientes parámetros dentro del spec (especificaciones) importantes:
+* <u>Replicas</u>: Número de replicas que deben estar ejecutándose.
+* <u>Selector</u>: Pods que va a controlar el ReplicaSet. Con el parámetro matchLabels se indica que los Pods que tengan un determinado Label son los que van a se controlados.
+* <u>Template</u>: Se indica la plantilla que se va a utilizar para realizar las réplicas.
 
 ## Deployment
 
-Un controlador de Deployment proporciona actualizaciones declarativas para los Pods y los ReplicaSets. En el mismo archivo se especifica un estado deseado y el controlador de deployment se encarga de cambiar del estado actual al deseado de forma controlada.
-
-## ReplicaSet
-
-Consiste en mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, para garantizar la disponibilidad de las aplicaciones.
-
-Dentro de un ReplicaSet se definen con campos un número de réplicas, incluyendo un selector que identifica los Pods que se pueden adquirir y una plantilla pod especificando los datos de los nuevos Pods que se deberían de crear para poder conseguir el número de réplicas esperado. Su propósito por lo tanto es crear y eliminar Pods para alcanzar el número esperado. Los deployments son más recomendables porque proporcionan replicaset y actualizaciones declarativas junto con muchas otras características útiles.
+Un deployment es la unidad de más alto nivel a la hora de gestionar Kubernetes. Son los objetos de Kubernetes que se utilizan para desplegar una aplicación. Conlleva la creación de un replicaset (por lo que hay que definirlo en el manifiesto) y de los Pods correspondientes. Es posible realizar actualización de la imagen con lo que se creará un nuevo repliaSet, si se tiene historial de replicaSet además se puede volver a una versión anterior (Rollback).
+A la hora de desplegar aplicaciones en el clúster con deployment pueden darse dos casos:
+* <u>Aplicaciones con varios servicios</u>: Por cada servicio que se necesite se crea un recurso deployment.
+* <u>Aplicaciones construidas con microservicios</u>: Por cada microservicio que forma parte de la aplicación se crea un recurso deployment.
+Los manifiestos de deployment tienen los siguientes atributos relacionados:
+* <u>revisionHistoryLimit</u>: Indica cuántos ReplicaSets antiguos conservar para realizar rollback (por defecto es 10).
+* <u>strategy</u>: indica cómo se va a realizar la actualización del deployment. Puede ser:
+    * <u>Recreate</u>: Elimina los Pods antiguos y crea los nuevos.
+    * <u>RollingUpdate</u>: Va creando los nuevos Pods, comprueba que funcionan y se eliminan los antiguos (opción por defecto).
 
 
 ## Service
