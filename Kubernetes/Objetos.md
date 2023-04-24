@@ -63,8 +63,8 @@ spec:
 
 Un deployment es la unidad de más alto nivel a la hora de gestionar Kubernetes. Son los objetos de Kubernetes que se utilizan para desplegar una aplicación. Conlleva la creación de un replicaset (por lo que hay que definirlo en el manifiesto) y de los Pods correspondientes. Es posible realizar actualización de la imagen con lo que se creará un nuevo repliaSet, si se tiene historial de replicaSet además se puede volver a una versión anterior (Rollback).
 A la hora de desplegar aplicaciones en el clúster con deployment pueden darse dos casos:
-* `Aplicaciones con varios servicios`: Por cada servicio que se necesite se crea un recurso deployment.
-* `Aplicaciones construidas con microservicios`: Por cada microservicio que forma parte de la aplicación se crea un recurso deployment.
+* <u>Aplicaciones con varios servicios</u>: Por cada servicio que se necesite se crea un recurso deployment.
+* <u>Aplicaciones construidas con microservicios</u>: Por cada microservicio que forma parte de la aplicación se crea un recurso deployment.
 Los manifiestos de deployment tienen los siguientes atributos relacionados:
 * `revisionHistoryLimit`: Indica cuántos ReplicaSets antiguos conservar para realizar rollback (por defecto es 10).
 * `strategy`: indica cómo se va a realizar la actualización del deployment. Puede ser:
