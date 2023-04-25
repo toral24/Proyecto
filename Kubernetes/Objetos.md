@@ -149,16 +149,59 @@ spec:
             port:
               number: 80
 ```
+## ConfigMap
 
+Algunos contenedores tienen definidas ciertas variables de entorno que son necesarias antes de su despliegue, por ejemplo, usuario y contraseña de mysql, etc. Estas variables de entrono pueden ser definidas directamente con el contenedor en la etiqueta env especificando el nombre de la variable de entorno que se va a definir y el valor que se le va a dar.
+
+Sin embargo, se pueden utilizar un configmap que permite generar un diccionario (clave, valor) para estas variables de entorno, esto permite entre otras cosas, que el resto de los objetos tengan una configuración genérica y solo habría que modificar los parámetros del configmap para ajustarlos a los valores del equipo que lo vaya a ejecutar, por ejemplo, la IP o el puerto que va a correr un contenedor. También facilita el intercambio de manifiestos en GitHub, puesto que, por ejemplo, permite establecer los valores de red donde se va a levantar el clúster en todos los manifiestos modificando un solo objeto.
+
+Pese a que se puede generar un manifiesto donde se especifiquen los valores del Configmap es más seguro (aunque en principio no debería de contener datos confidenciales) generarlo a través de un comando y al utilizar en un manifiesto la clave no se puede ver el valor de la misma en ninguno de los manifiestos.
+
+### Comando para crear unConfigMap
+```bash
+kubectl create cm mariadb --from-literal=root_password=my-password \
+                          --from-literal=mysql_usuario=usuario     \
+                          --from-literal=mysql_password=password-user \
+                          --from-literal=basededatos=test
+```
+### Uso de un ConfigMap
+```yaml
+...
+    spec:
+      containers:
+        - name: contenedor-mariadb
+          image: mariadb
+          ports:
+            - containerPort: 3306
+              name: db-port
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: mariadb
+                  key: root_password
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: mariadb
+                  key: mysql_usuario
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: mariadb
+                  key: mysql_password
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mariadb
+                  key: basededatos
+```
 ## Secret
 
 Un secret es un objeto que permite almacenar y administrar información confidencial como contraseñas o llaves ssh, ya que por seguridad no se deben definir en otros archivos más accesibles.
 
-## Configmap
 
-Los configmaps se utilizan para almacenar datos no confidenciales en el formato clave-valor. Los Pods pueden utilizarlos como variables de entorno, argumentos de la línea de comandos o como ficheros de configuración de un volumen. Como se puede var en este [ejemplo](./Objetos_de_ejemplo/ejemplo-uso-configmap.yaml)
 
-Este objeto de Kubernetes permite que el resto de los objetos tengan una configuración genérica y solo habría que modificar los parámetros del configmap para ajustarlos a los valores del equipo que lo vaya a ejecutar, por ejemplo, la IP o el puerto que va a correr un contenedor.
 
 ## StatefulSets
 
