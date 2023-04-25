@@ -157,7 +157,7 @@ Sin embargo, se pueden utilizar un configmap que permite generar un diccionario 
 
 Pese a que se puede generar un manifiesto donde se especifiquen los valores del Configmap es más seguro (aunque en principio no debería de contener datos confidenciales) generarlo a través de un comando y al utilizar en un manifiesto la clave no se puede ver el valor de la misma en ninguno de los manifiestos.
 
-### Comando para crear unConfigMap
+### Comando para crear un ConfigMap
 ```bash
 kubectl create cm mariadb --from-literal=root_password=my-password \
                           --from-literal=mysql_usuario=usuario     \
@@ -198,11 +198,32 @@ kubectl create cm mariadb --from-literal=root_password=my-password \
 ```
 ## Secret
 
-Un secret es un objeto que permite almacenar y administrar información confidencial como contraseñas o llaves ssh, ya que por seguridad no se deben definir en otros archivos más accesibles.
+Un secret es un objeto muy similar a un configmap con la diferencia de que en estos objetos la información se cifra, por lo que es útil para almacenar y administrar información confidencial como contraseñas o llaves ssh, ya que por seguridad deben ser cifradas.
 
+Igual que en el caso anterior los secrets se pueden configurar con manifiestos de Kubernetes pero es más recomendable definirlos a través de comandos (especialmente en estos objetos que si se va a almacenar información confidencial), además debería de borrarse el historial del terminal para evitar posibles ataques informáticos  
 
+### Comando para crear un secret
+```bash
+kubectl create secret generic mariadb --from-literal=password=my-password
+```
+### Uso de un secret
+```yaml
+...
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb
+          ports:
+            - containerPort: 3306
+              name: db-port
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb
+                  key: password
 
-
+```
 ## StatefulSets
 
 Gestiona el despliegue y escalado de un conjunto de Pods, a diferencia de un deployment mantiene la identidad de los Pods mediante un identificador persistente que mantienen a lo largo de cualquier reprogramación. Son útiles para aplicaciones que necesitan:
