@@ -305,18 +305,108 @@ spec:
 
 ## StatefulSets
 
-Gestiona el despliegue y escalado de un conjunto de Pods, a diferencia de un deployment mantiene la identidad de los Pods mediante un identificador persistente que mantienen a lo largo de cualquier reprogramación. Son útiles para aplicaciones que necesitan:
-* Identificadores de red estables.
-* Almacenamiento estable.
-* Despliegue y escalado ordenado.
-* Actualizaciones en línea.
+Los deployment son especialmente útiles para aplicaciones sin estado como puede ser un servicio DNS, pero para las aplicaciones con estado (stateful) como puede ser un servicio de base de datos.
+
+La mayoría de las aplicaciones que se utilizan actualmente son con estado. Lo más habitual en Kubernetes es descomponerlas en microservicios que se intercomuniquen entre sí, en aquellos que no tengan estado se utilizarán deployments y en los demás se utilizarán StatefulSet. 
+
+Los StatefulSet controlan el despliegue de Pods con identidades únicas y persistentes. Su objetivo es poder utilizar aplicaciones que necesiten características fijas y estables en los Pods . Alguna de las características más importantes de los StatefulSet son las siguientes:
+
+* Requieren un **Headless Service** que sea responsable de la identidad de red de los Pods. Este garantiza Pods con identificadores de red estables.
+* Almacenamiento estable (cada pod recibe un PV).
+
+Los Headless Service se caracterizan por no tener cluster IP, creará una entrada DNS por cada Pod , que nos permitirá acceder a los mismos.
+
+### Headless Service
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+```
+
+Las principales características en la definición de un manifiesto de StatefulSet son las siguientes:
+* `serviceName`: Nombre del dominio DNS.
+* `selector`: Pods que se van a controlar (se seleccionan por la etiqueta que los identifica).
+* `volumeClaimTemplates`: Es donde se define el almacenamiento estable, en la definición es similar a un PVC.
+* `volumeMounts`: directorio donde se va a montar el volumen persistente en el Pod.
+
+### StatefulSet
+
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  serviceName: "nginx"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: k8s.gcr.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+```
 
 ## DaemonSet
 
 Un Daemonset garantiza que un grupo de nodos, generalmente todos los de un clúster, ejecuten una copia de un pod determinado. Usos:
-* Recolección de logs.
-* Monitorización de nodos.
-* Almacenamiento en el clúster.
+* Recolección de logs (fluentd, logstash, ...).
+* Monitorización de los nodos nodos (Prometheus, sysdig, ...).
+* Almacenamiento en el clúster (ceph o glusterfs).
+
+Todos los parametros que puede tener un DaemonSet se ya se han estudiado
+
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset1
+spec:
+  selector:
+      matchLabels:
+        name: daemonset-pod 
+  template:               # Plantilla con las características del Pod
+    metadata:
+      labels:
+        name: daemonset-pod 
+    spec:
+      nodeSelector:
+        type: worker-prod # Etiqueta del nodo en el que se ejecuta (opcional)
+      containers:
+      - name: daemon-pod
+        image: ...
+```
 
 ## Jobs y CronJob
 
