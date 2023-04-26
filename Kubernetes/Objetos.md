@@ -227,7 +227,7 @@ Los volúmenes de Kubernetes se pueden dividir en:
 
 Existe una capa de abstracción entre los Pods y los volúmenes persistentes llamada Persistent Volume Claim (PVC) que se crea automáticamente un volumen persistente que tenga un storgeClass y accessMode compatible si no se especifica en el volumen persistente directamente los PVC que tiene vinculados (que es lo recomendable). Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor (Cabadas, 2022).
 
-## Aprovisionamiento de los volúmenes
+### Aprovisionamiento de los volúmenes
 
 <u>Aprovisionamiento estático</u>: El administrador del clúster crea un volumen persistente en el que se van a definir las siguientes etiquetas:
 
@@ -243,7 +243,7 @@ Existe una capa de abstracción entre los Pods y los volúmenes persistentes lla
   * `Delete`: Se borra después de su utilización.
 * `hostPath`: Indica el directorio donde se va a guardar la información.
 
-### Persistent volume
+**Persistent volume**
 
 ```yaml
 apiVersion: v1
@@ -262,7 +262,7 @@ spec:
 ```
 <u>Aprovisionamiento dinámico</u>: Se realiza una petición de almacenamiento con un PVC y de forma dinámica se crea el PV que representa el volumen y se asocia con esa petición. Para este tipo de gestión de volúmenes se necesita un aprovisionador de almacenamiento que se debe definir a través del objeto storageClass.
 
-### Persistent volume claim
+**Persistent volume claim**
 
 ```yaml
 apiVersion: v1
@@ -280,7 +280,7 @@ spec:
 
 A la hora usar los volúmenes habrá que definir en la etiqueta spec una etiqueta volumes donde se indicarán los PVC que se van a utilizar dándole un nombre a los grupos, luego en la etiqueta containers habrá que añadir una etiqueta voumeMounts donde se indique la ruta donde se montará los PVC en mountPath y se indica el nombre que se le dio en la etiqueta anterior.
 
-### Uso de volumenes
+**Uso de volumenes**
 
 ```yaml
 kind: Pod
@@ -318,12 +318,11 @@ Un Daemonset garantiza que un grupo de nodos, generalmente todos los de un clús
 * Monitorización de nodos.
 * Almacenamiento en el clúster.
 
-## Jobs
+## Jobs y CronJob
 
 Un job es una forma de automatizar tareas. A diferencia de los Pods los Jobs tienen un número de ejecuciones definido y un tiempo limitado. Se suelen utilizar para tareas de mantenimiento de forma puntual y recurrente.
 A la hora de definirlos la única diferencia con los Pods es el parámetro completions que es el número de ejecuciones.
 
-## CronJob
 
 Cron job es un objeto que ejecuta un job de forma periódica según un horario programado, escrito en formato cron. Al definirse tiene un parámetro adicional a los Jobs llamado Schedule que es donde se define la periodicidad, luego ya se define el job en jobTemplate.
 
