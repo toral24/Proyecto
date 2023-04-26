@@ -28,13 +28,6 @@ Los Pods al igual que los contenedores son entidades relativamente efímeras. Cu
 
 Los Pods son un modelo del patrón de múltiples procesos de cooperación que forman una unidad de servicio cohesiva. Simplifican la implementación y la administración de las aplicaciones proporcionando una abstracción de mayor nivel que el conjunto de las aplicaciones que lo constituyen.
 
-## Volume
-Los volúmenes de Kubernets son una abstracción cuyo objetivo es evitar la pérdida de datos importantes, ya que, los contenedores y los Pods son efímeros se perdería toda la información con la que se trabaja dentro de ellos. Un volumen es un directorio accesible para los contenedores de un Pod.
-Los volúmenes de Kubernetes se pueden dividir en:
-* <u>Efímeros</u>: Tienen la misma duración que el pod, para usarlos al definir el volumen en el pod en lugar de indicar una ruta dentro del cúster hay que añadir `emptyDir: {}`.
-* <u>Persistentes</u>: Un **volumen persistente** (PV), por otro lado, es un recurso de almacenamiento que se define a partir de un manifiesto de kubernetes y que puede ser almacenado localmente en los nodos, en un repositorio de github o en algún servicio de cloud. 
-Existe una capa de abstracción entre los Pods y los volúmenes persistentes llamada **Persistent Volume Claim** (PVC) que se vincula automáticamente a volumen persistente que tenga un storgeClass y accessMode compatible si no se especifica en el volumen persistente directamente los PVC que tiene vinculados (que es lo recomendable). Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor.
-
 ## ReplicaSet
 
 Consiste en mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, para garantizar la disponibilidad de las aplicaciones. Permite tolerancia a fallos, ya que, si algún pod falla estarán los demás disponibles y se puede modificar el número de replicas dinámicamente. Estas réplicas se ejecutan en nodos distintos del clúster, por lo qué, en caso de fallar uno de los mismos también se garantiza tolerancia a fallos físicos de estos nodos.
@@ -224,6 +217,92 @@ kubectl create secret generic mariadb --from-literal=password=my-password
                   key: password
 
 ```
+## Volúmenes
+
+Los volúmenes de Kubernets son una abstracción cuyo objetivo es evitar la pérdida de datos importantes, ya que, los contenedores y los Pods son efímeros se perdería toda la información con la que se trabaja dentro de ellos. Un volumen es un directorio accesible para los contenedores de un Pod.
+
+Los volúmenes de Kubernetes se pueden dividir en:
+* <u>Efímeros</u>: Tienen la misma duración que el pod, para usarlos al definir el volumen en el pod en lugar de indicar una ruta dentro del cúster hay que añadir `emptyDir: {}`.
+* <u>Persistentes</u>: Un volumen persistente (PV), por otro lado, es un recurso de almacenamiento que se define a partir de un manifiesto de kubernetes y que puede ser almacenado localmente en los nodos, en un repositorio de github o en algún servicio de cloud. 
+
+Existe una capa de abstracción entre los Pods y los volúmenes persistentes llamada Persistent Volume Claim (PVC) que se crea automáticamente un volumen persistente que tenga un storgeClass y accessMode compatible si no se especifica en el volumen persistente directamente los PVC que tiene vinculados (que es lo recomendable). Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor (Cabadas, 2022).
+
+## Aprovisionamiento de los volúmenes
+
+<u>Aprovisionamiento estático</u>: El administrador del clúster crea un volumen persistente en el que se van a definir las siguientes etiquetas:
+
+* `storageClassName`: indica el aprovisionador de almacenamiento, si no se va a utilizar hay que establecerla como manual.
+* `Capacity` --> `storage`: Inidicar el tamaño.
+* `AccessModes`: Para indicar el modo de acceso. Los tres principales modos de acceso son:
+  * `ReadWriteOnce` (escritura y lectura para un solo nodo).
+  * `ReadOnlyMany` (Escritura para muchos nodos).
+  * `ReadWriteMany` (Escritura y lectura para muchos nodos).
+* `persistentVolumeReclaimPolicy`: Establece la política de reciclaje. Tiene tres opciones también:
+  * `Retain`: El PV no se elimina aunque se elimine el PVC.
+  * `Recycle`: Se elimina el contenido y el volumen es utilizable de nuevo.
+  * `Delete`: Se borra después de su utilización.
+* `hostPath`: Indica el directorio donde se va a guardar la información.
+
+### Persistent volume
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv1
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  hostPath:
+    path: /data/pv1
+```
+<u>Aprovisionamiento dinámico</u>: Se realiza una petición de almacenamiento con un PVC y de forma dinámica se crea el PV que representa el volumen y se asocia con esa petición. Para este tipo de gestión de volúmenes se necesita un aprovisionador de almacenamiento que se debe definir a través del objeto storageClass.
+
+### Persistent volume claim
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pvc1
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+A la hora usar los volúmenes habrá que definir en la etiqueta spec una etiqueta volumes donde se indicarán los PVC que se van a utilizar dándole un nombre a los grupos, luego en la etiqueta containers habrá que añadir una etiqueta voumeMounts donde se indique la ruta donde se montará los PVC en mountPath y se indica el nombre que se le dio en la etiqueta anterior.
+
+### Uso de volumenes
+
+```yaml
+kind: Pod
+apiVersion: v1
+metadata:
+  name: task-pv-pod
+spec:
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+       claimName: pvc1
+  containers:
+    - name: task-pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: task-pv-storage
+```
+
 ## StatefulSets
 
 Gestiona el despliegue y escalado de un conjunto de Pods, a diferencia de un deployment mantiene la identidad de los Pods mediante un identificador persistente que mantienen a lo largo de cualquier reprogramación. Son útiles para aplicaciones que necesitan:
