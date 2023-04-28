@@ -17,5 +17,3 @@ services:
 volumes:
   data:
 ```
-
-[volver](../../index.md)

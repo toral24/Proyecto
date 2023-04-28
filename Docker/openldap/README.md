@@ -57,5 +57,3 @@ networks:
   openldap:
     driver: bridge
 ```
-
-[volver](../../index.md)

@@ -12,15 +12,7 @@
     
     2.2. [Comandos](./Docker/comandos.md)
 
-    2.3 [Estructura-lamp](./Docker/LAMP/)
-
-    2.4 [HomeAssistant](./Docker/homeassistant/)
-
-    2.5 [OpenLDAP](./Docker/openldap/)
-
-    2.6 [Portainer](./Docker/portainer/)
-
-    2.7 [Poste.io](./Docker/poste.io/)
+    2.3 [Contenido práctico](./Docker/ContenidoPractico.md)
 
 3. [Kubernetes](./Kubernetes/)
 
