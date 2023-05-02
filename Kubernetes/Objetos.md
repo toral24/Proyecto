@@ -28,6 +28,23 @@ Los Pods al igual que los contenedores son entidades relativamente efímeras. Cu
 
 Los Pods son un modelo del patrón de múltiples procesos de cooperación que forman una unidad de servicio cohesiva. Simplifican la implementación y la administración de las aplicaciones proporcionando una abstracción de mayor nivel que el conjunto de las aplicaciones que lo constituyen.
 
+En la etiqueta container se indica la imagen (image) que se va a utilizar para generar el o los contenedores en el pod el nombre que va a recibir el contenedor (name) y la política de descarga de la imagen. Como se puede ver en el siguiente ejemplo:
+
+```yaml
+apiVersion: v1 # required
+kind: Pod # required
+metadata: # required
+ name: pod-nginx # required
+ labels:
+   app: nginx
+   service: web
+spec: # required
+ containers:
+   - image: nginx:1.16
+     name: contenedor-nginx
+     imagePullPolicy: Always
+```
+
 ## ReplicaSet
 
 Consiste en mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, para garantizar la disponibilidad de las aplicaciones. Permite tolerancia a fallos, ya que, si algún pod falla estarán los demás disponibles y se puede modificar el número de replicas dinámicamente. Estas réplicas se ejecutan en nodos distintos del clúster, por lo qué, en caso de fallar uno de los mismos también se garantiza tolerancia a fallos físicos de estos nodos.
