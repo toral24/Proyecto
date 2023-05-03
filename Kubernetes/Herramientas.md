@@ -15,6 +15,11 @@ Kubeadm por otra parte se encarga de la creación y despliegue de clústers, del
 * <u>Desarrollo local</u>: Permite desarrollar localmente clústers con dependencias mínimas en poco tiempo para labores de prueba y desarrollo.
 * Contribuye al funcionamiento de otras herramientas de más alto nivel.
 * Es una herramienta ligera.
+
+## Minikube
+
+Minikube es una herramienta que levanta un clúster de Kubernetes ligero en una máquina virtual que crea automáticamente en un hipervisor (se puede especificar en cual si se tiene varios con el parámetro --driver=p.e virtualbox) con el comando minikube start. El clúster tendrá un solo nodo e integra una interfaz gráfica con la que gestionar el clúster a la que se puede acceder con el comando minikube dashboard desde un navegador 
+
 ## Kind
 
 Kind es el acrónimo de Kuberntes in docker, y permite levantar un clúster de Kubernetes en una máquina local en la que previamente se haya instalado docker, ya que, los nodos que se van a utilizar son contenedores de docker. 
