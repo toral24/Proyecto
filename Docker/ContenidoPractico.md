@@ -1,5 +1,7 @@
 # Contenido Práctico
 
+En este proyecto se van a levantar ocho contenedores (tres de los cuales pertenecen a las estructura LAMP y dos a OpenLDAP) con la herramienta docker-compose.
+
 ## Homeassistant
 
 El último contendor que se va a implantar en esta parte del trabajo será dedicado a Homeassistant que es una plataforma de domótica de código abierto que permite rastrear y controlar los dispositivos del hogar y automatizar su control.
