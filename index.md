@@ -12,7 +12,7 @@
     
     2.2. [Comandos](./Docker/comandos.md)
 
-    2.3 [Contenido práctico](./Docker/ContenidoPractico.md)
+    2.3. [Contenido práctico](./Docker/ContenidoPractico.md)
 
 3. [Kubernetes](./Kubernetes/)
 
@@ -20,7 +20,9 @@
 
     3.2. [Comandos kubectl](./Kubernetes/Comandos_kubectl.md)
 
-    3.3 [Objetos](./Kubernetes/Objetos.md)
+    3.3. [Objetos](./Kubernetes/Objetos.md)
+
+    3.4. [Contenido práctico](./Kubernetes/ContenidoPractico.md)
 
 ## Introducción al proyecto
 
