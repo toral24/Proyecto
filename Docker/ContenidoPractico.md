@@ -2,8 +2,39 @@
 
 En esta parte del proyecto se van a levantar ocho contenedores (tres de los cuales pertenecen a las estructura LAMP y dos a OpenLDAP) con la herramienta docker-compose.
 
-##
+## Instalación de docker engine
 
+Lo primero será instalar los paquetes necesrios para habilitar el uso de repsitorios https con apt:
+
+```bash
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg
+```
+
+Añadir la clave oficial GPG:
+
+```bash
+ sudo install -m 0755 -d /etc/apt/keyrings
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+ sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+Configurar el repositorio:
+
+```bash
+ echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Instalar Docker engine:
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
 ## Homeassistant
 
 El último contendor que se va a implantar en esta parte del trabajo será dedicado a Homeassistant que es una plataforma de domótica de código abierto que permite rastrear y controlar los dispositivos del hogar y automatizar su control.
