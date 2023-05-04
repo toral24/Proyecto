@@ -1,6 +1,8 @@
 # Contenido Práctico
 
-En este proyecto se van a levantar ocho contenedores (tres de los cuales pertenecen a las estructura LAMP y dos a OpenLDAP) con la herramienta docker-compose.
+En esta parte del proyecto se van a levantar ocho contenedores (tres de los cuales pertenecen a las estructura LAMP y dos a OpenLDAP) con la herramienta docker-compose.
+
+##
 
 ## Homeassistant
 

@@ -1,8 +1,8 @@
 # Contenido práctico
 
-Para realizar las pruebas prácticas de Kubernetes se han probado tres (minikube, kubeadm init y kind) de las alternativas que existen para levantar un clúster local de Kubernetes. Minikube se ha descartado porque se instala en la máquina local y aunque levanta una máquina virtual en la que funcionará el clúster presenta dificultades de portabilidad, es decir, sería difícil hacer la presentación y entrega en USB, además de que funciona como un único nodo. En principio se iba a intentar crear un clúster de varias máquinas virtuales con kubeadm pero el nodo máster aparecía como notReady y no se encontró solución.
+Para realizar las pruebas prácticas de Kubernetes se han probado tres de las alternativas que existen (minikube, kubeadm init y kind) para levantar un clúster local de Kubernetes. Minikube se ha descartado porque se instala en la máquina local y aunque levanta una máquina virtual en la que funcionará el clúster presenta dificultades de portabilidad, es decir, sería difícil hacer la presentación y entrega en USB, además de que funciona como un único nodo. En principio se iba a intentar crear un clúster de varias máquinas virtuales con kubeadm pero el nodo máster aparecía como notReady y no se encontró solución.
 
-Por lo tanto, se ha decidido realizar las pruebas con la herramienta kind (Kubernetes IN Docker) dentro de una máquina virtual con Ubuntu 22.04 LTS. 
+Por lo tanto, se ha decidido realizar las pruebas con la herramienta kind (Kubernetes IN Docker) dentro de la máquina virtual con Ubuntu 22.04 LTS que se utilizó previamente para las pruebas con Docker. 
 
 ## Instalación kind
 
@@ -22,7 +22,7 @@ Una vez instalado kind con el comando `kind create cluster` se creará un clúst
 *  Solo existe un nodo, por lo que, limita la amplitud de las pruebas que se pueden hacer.
 * No hay puertos compartidos entre el contenedor que hace de nodo y la máquina anfitrión por lo que no se pueden acceder a los servicios de los pods.
 
-Todos estos problemas se pueden solventar con un fichero yaml en el que se especifiquen los nodos, se comparta almacenamiento y se mapeen algunos puertos entre el host y los nodos. En este caso se va a utilizar el siguiente fichero de configuración 
+Todos estos problemas se pueden solventar con un fichero yaml en el que se especifiquen los nodos, se comparta almacenamiento y se mapeen algunos puertos entre el host y los nodos. En este caso se va a utilizar el siguiente fichero de configuración (config.yaml):
 
 ```yaml
 kind: Cluster
@@ -47,5 +47,11 @@ nodes:
   extraMounts:
   - hostPath: /home/sergio/compartido
   - containerPath: /compartido
+```
+
+Ahora para que se cree el clúster a partir del fichero de configuración anterior habrá que utilizar el mismo comando pero con el parámetro --config=config.yaml. El comando quedaría así:
+
+```bash
+kind create cluster --config=config.yaml
 ```
 
