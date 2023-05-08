@@ -33,25 +33,29 @@ networking:
   podSubnet: "192.168.0.0/24"
 nodes:
 - role: control-plane
-- role: worker
-  extraPortMappings:
-  - containerPort: 30950
-    hostPort: 80
-  extraMounts:
   - hostPath: /home/sergio/compartido
-  - containerPath: /compartido
+    containerPath: /compartido
 - role: worker
-  extraPortMappings:
-  - containerPort: 80
-    hostPort: 80
-  extraMounts:
-  - hostPath: /home/sergio/compartido
-  - containerPath: /compartido
 ```
 
-Ahora para que se cree el clúster a partir del fichero de configuración anterior habrá que utilizar el mismo comando pero con el parámetro --config=config.yaml. El comando quedaría así:
+Para poder compartir archivos entre la máquina virtual y los contenedores que actuaran como nodos de Kubernetes es necesario especificar el parámetro extraMounts. Ahora para que se cree el clúster a partir del fichero de configuración anterior habrá que utilizar el mismo comando pero con el parámetro --config=config.yaml. El comando quedaría así:
 
 ```bash
 kind create cluster --config=config.yaml
 ```
 
+## Instalación kubectl
+
+Para descargar la última versión de kubectl hay que utilizar el siguiente comando:
+
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+```
+
+Y para instalarla utilizar:
+
+```bash
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+## Pruebas
