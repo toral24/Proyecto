@@ -1,60 +1,25 @@
 # Contenido Práctico
 
-En esta parte del proyecto se van a levantar ocho contenedores (tres de los cuales pertenecen a las estructura LAMP y dos a OpenLDAP) con la herramienta docker-compose.
+Para desarrollar el contenido práctico de docker se van a desplegar una serie de contenedores con archivos docker compose en una máquina virtual Ubuntu 22.04 LTS. 
 
-## Instalación de docker engine
+## Portainer
+Portainer aporta una interfaz gráfica con la que gestionar los diferentes contenedores de docker, se accede por el navegador web en este caso a través del puerto 9443. 
 
-Lo primero será instalar los paquetes necesrios para habilitar el uso de repsitorios https con apt:
-
-```bash
-sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg
-```
-
-Añadir la clave oficial GPG:
-
-```bash
- sudo install -m 0755 -d /etc/apt/keyrings
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
- sudo chmod a+r /etc/apt/keyrings/docker.gpg
-```
-
-Configurar el repositorio:
-
-```bash
- echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-
-Instalar Docker engine:
-
-```bash
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
-## Homeassistant
-
-El último contendor que se va a implantar en esta parte del trabajo será dedicado a Homeassistant que es una plataforma de domótica de código abierto que permite rastrear y controlar los dispositivos del hogar y automatizar su control.
-
-Consta de un solo contenedor que se expone desde el puerto 8123. A continuación se puede ver el archivo docker-compose.yaml utilizado para levantar el contenedor:
+A continuación se puede ver el archivo docker-compose.yaml con el que se ha levantado el contenedor:
 
 ```yaml
-version: '3'
+version: "3"
 services:
-  homeassistant:
-    container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
-    volumes:
-      - ./data:/config
-      - /etc/localtime:/etc/localtime:ro
-    restart: unless-stopped
-    privileged: true
+  portainer:
+    image: portainer/portainer-ce:latest
     ports:
-      - "8123:8123"
-    network_mode: bridge 
+      - 9443:9443
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+volumes:
+  data:
 ```
 
 ## Estructura LAMP
@@ -134,6 +99,39 @@ RUN docker-php-ext-install gd
 RUN a2enmod rewrite
 ```
 
+## Poste.io
+Poste.io es un servidor de correo electrónico, consta de un único contenedor, y se expone por los puertos 4443 y 8181 pero para funcionar correctamente precisa de siete puertos.
+
+Por otro lado, para poder comunicarse con el protocolo SMTP con otros correos electrónicos se necesita un certificado TLS. En este caso se utilizará “Let’s Encrypt certificate”.
+
+A continuación se puede ver el archivo docker-compose.yaml con el que se han generado el contenedor:
+
+```yaml
+version: "3.4"
+services:
+  poste:
+    image: analogic/poste.io
+    restart: always
+    expose:
+      - 25
+      - 8181
+      - 4443
+      - 110
+      - 143
+      - 465
+      - 587
+      - 993
+      - 995
+    volumes:
+      - mail:/var/docker/
+    networks:
+      - default
+    environment:
+      - HTTPS_PORT=4443
+      - HTTP_PORT=8181
+      - DISABLE_CLAMAV=TRUE
+```
+
 ## OpenLDAP
 
 OpenLDAP es una implementación de código abierto del protocolo Lightweight Directory Acces Protocol o protocolo de acceso ligero a directorio en español. Es un protocolo que permite acceder a la información almacenada de forma centralizada en la red. Se utiliza a nivel de aplicación para acceder a los servicios de escritorio remoto.
@@ -195,55 +193,24 @@ networks:
     driver: bridge
 ```
 
-## Portainer
-Portainer aporta una interfaz gráfica con la que gestionar los diferentes contenedores de docker, se accede por el navegador web en este caso a través del puerto 9443. 
+## Homeassistant
 
-A continuación se puede ver el archivo docker-compose.yaml con el que se ha levantado el contenedor:
+El último contendor que se va a implantar en esta parte del trabajo será dedicado a Homeassistant que es una plataforma de domótica de código abierto que permite rastrear y controlar los dispositivos del hogar y automatizar su control.
+
+Consta de un solo contenedor que se expone desde el puerto 8123. A continuación se puede ver el archivo docker-compose.yaml utilizado para levantar el contenedor:
 
 ```yaml
-version: "3"
+version: '3'
 services:
-  portainer:
-    image: portainer/portainer-ce:latest
-    ports:
-      - 9443:9443
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/config
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
-volumes:
-  data:
-```
-
-## Poste.io
-Poste.io es un servidor de correo electrónico, consta de un único contenedor, y se expone por los puertos 4443 y 8181 pero para funcionar correctamente precisa de siete puertos.
-
-Por otro lado, para poder comunicarse con el protocolo SMTP con otros correos electrónicos se necesita un certificado TLS. En este caso se utilizará “Let’s Encrypt certificate”.
-
-A continuación se puede ver el archivo docker-compose.yaml con el que se han generado el contenedor:
-
-```yaml
-version: "3.4"
-services:
-  poste:
-    image: analogic/poste.io
-    restart: always
-    expose:
-      - 25
-      - 8181
-      - 4443
-      - 110
-      - 143
-      - 465
-      - 587
-      - 993
-      - 995
-    volumes:
-      - mail:/var/docker/
-    networks:
-      - default
-    environment:
-      - HTTPS_PORT=4443
-      - HTTP_PORT=8181
-      - DISABLE_CLAMAV=TRUE
+    privileged: true
+    ports:
+      - "8123:8123"
+    network_mode: bridge 
 ```

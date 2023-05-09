@@ -4,9 +4,9 @@
 
 Docker compose es un plugin sencillo que ya viene preinstalado con las últimas versiones, cuyo objetivo es orquestar contenedores.
 
-La idea detrás de docker compose es facilitar la ejecución de diferentes contenedores que van a interactuar entre sí, a partir de un fichero .yaml en el que se indican diferentes parámetros de cada uno antes de levantarse.
+La idea detrás de docker compose es facilitar la ejecución de uno o más contenedores que pueden interactuar entre sí, a partir de un fichero .yaml en el que se indican diferentes parámetros de cada uno antes de levantarse, de tal forma que no es necesario ejecutar uno o varios comandos en los cuales se indicarían todos los datos que se necesiten para implementar los servicios (que como se pude ver en la parte práctica pueden ser muchos datos) 
 
-Para levantar todos los contenedores definidos en el fichero docker-compose.yml hay que utilizar el siguiente comando:
+Para levantar todos los contenedores definidos en el fichero docker-compose.yml hay que utilizar el siguiente comando, dentro del directorio en el que se encuentra este archivo junto con los demás que pueden ser necesarios, como dockerfiles o directorios que actuarán como volúmenes:
 
 ```bash
 docker-compose up -d
@@ -32,17 +32,14 @@ De esta forma cuando se ejecute `docker compose up -d` se montará la carpeta `.
 
 ## Docker Hub
 
-[Docker Hub](https://hub.docker.com/) es un sitio web similar a github en el que la gente puede de forma fácil contribuir y publicar sus imágenes. Docker tiene su propia cuenta en la que publica sus imágenes oficiales. Estas imágenes y las de autores verificados son de mayor confianza que el resto, ya que, las imágenes publicadas no dejan de ser software de terceros y pueden contener software malicioso.
+[Docker Hub](https://hub.docker.com/) es un sitio web similar a GitHub en el que la gente puede de forma fácil contribuir y publicar sus imágenes. Docker tiene su propia cuenta en la que publica sus imágenes oficiales. Estas imágenes y las de autores verificados son de mayor confianza que el resto, ya que, las imágenes publicadas no dejan de ser software de terceros y pueden contener software malicioso.
 
 ## Dockerfile
 
 Un Dockerfile es un script que se utiliza para construir una imagen de docker personalizándola con ciertas instrucciones y que se ejecutará con el comando docker build. Algunas de estas instrucciones son las siguientes (Anónimo, 2021):
 
-* FROM: Se utiliza para indicar la imagen a partir de la cual se construye la nueva imagen.
-* LABEL: Par clave-valor que permite añadir etiquetas.
-* RUN: Se utiliza para ejecutar un comando durante el proceso de construcción.
-* ADD: Se utiliza para copiar archivos o directorios desde un origen indicado con “src” hacia un destino indicado con dest. También se puede configurar la propiedad del mismo.
-* ENV: Con el se define una variable de entorno que se puede utilizar durante la etapa de construcción.
-
-
-[volver](../index.md)
+* <u>FROM</u>: Se utiliza para indicar la imagen a partir de la cual se construye la nueva imagen.
+* <u>LABEL</u>: Par clave-valor que permite añadir etiquetas.
+* <u>RUN</u>: Se utiliza para ejecutar un comando durante el proceso de construcción.
+* <u>ADD</u>: Se utiliza para copiar archivos o directorios desde un origen indicado con `src` hacia un destino indicado con `dest`. También se puede configurar la propiedad del mismo.
+* <u>ENV</u>: Con el se define una variable de entorno que se puede utilizar durante la etapa de construcción.
