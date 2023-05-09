@@ -9,8 +9,8 @@ Por lo tanto, se ha decidido realizar las pruebas con la herramienta kind (Kuber
 Para realizar la instalación hay que ejecutar los siguientes comandos:
 
 ```bash
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64.
-chmod +x ./kind.
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
+chmod +x ./kind
 sudo mv ./kind /usr/local/bin
 ```
 
@@ -27,7 +27,6 @@ Todos estos problemas se pueden solventar con un fichero yaml en el que se espec
 ```yaml
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-networking:
 nodes:
 - role: control-plane
   - hostPath: /home/sergio/compartido
@@ -58,3 +57,17 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
 ## Pruebas
+
+Una vez se ha instalado todos los recursos necesarios habrá que comprobar que todo funciona correctamente. Al crear el clúster con kind la salida deberá de ser la siguiente:
+
+<img src="../Imagenes/kind.png">
+
+Ahora para comprobar que los nodos estan operativos (STATUS --> Ready) habrá que utilizar el comando kubectl get nodes: 
+
+<img src="../Imagenes/nodos.png">
+
+Comprobar con el manifiesto de ejemplo deployment-nginx disponible en [objetos](https://toral24.github.io/Proyecto/Kubernetes/Objetos.html) que se levantan (Ready 1/1) los pods correctamente:
+
+<img src="../Imagenes/pods.png">
+
+Y que es posible acceder en este caso al servicio de nginx con el comando kubectl port-forward:
