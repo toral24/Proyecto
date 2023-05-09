@@ -105,6 +105,4 @@ patchesStrategicMerge:
   - wordpress-deployment-patch.yaml
 ```
 
-[volver](../index.md)
-
 
