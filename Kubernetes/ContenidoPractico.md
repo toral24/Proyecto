@@ -76,4 +76,4 @@ Y que es posible acceder en este caso al servicio de nginx con el comando kubect
 
 Ahora en el navegador accediendo a localhost desde la máquina virtual se puede comprobar que todo funciona correctamente:
 
-<img src="../Imagenes/ngix.png">
+<img src="../Imagenes/nginx.png">
