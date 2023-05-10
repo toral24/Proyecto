@@ -71,3 +71,9 @@ Comprobar con el manifiesto de ejemplo deployment-nginx disponible en [objetos](
 <img src="../Imagenes/pods.png">
 
 Y que es posible acceder en este caso al servicio de nginx con el comando kubectl port-forward:
+
+<img src="../Imagenes/forward.png">
+
+Ahora en el navegador accediendo a localhost desde la máquina virtual se puede comprobar que todo funciona correctamente:
+
+<img src="../Imagenes/ngix.png">
