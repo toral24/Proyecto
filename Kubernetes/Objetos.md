@@ -56,6 +56,44 @@ A la hora de definir un replicaset existen los siguientes parámetros dentro del
 
 ```yaml
 apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: nginx
+          name: contenedor-nginx
+
+```
+
+## Deployment
+
+Un deployment es la unidad de más alto nivel a la hora de gestionar Kubernetes. Son los objetos de Kubernetes que se utilizan para desplegar una aplicación. Conlleva la creación de un replicaset (por lo que hay que definirlo en el manifiesto) y de los Pods correspondientes. Es posible realizar actualización de la imagen con lo que se creará un nuevo repliaSet, si se tiene historial de replicaSet además se puede volver a una versión anterior (Rollback).
+
+A la hora de desplegar aplicaciones en el clúster con deployment pueden darse dos casos:
+
+* Aplicaciones con varios servicios: Por cada servicio que se necesite se crea un recurso deployment.
+
+* Aplicaciones construidas con microservicios: Por cada microservicio que forma parte de la aplicación se crea un recurso deployment.
+
+Los manifiestos de deployment tienen los siguientes atributos relacionados:
+
+* revisionHistoryLimit: Indica cuántos ReplicaSets antiguos conservar para realizar rollback (por defecto es 10).
+* strategy: indica cómo se va a realizar la actualización del deployment. Puede ser:
+  * Recreate: Elimina los Pods antiguos y crea los nuevos.
+  * RollingUpdate: Va creando los nuevos Pods, comprueba que funcionan y se eliminan los antiguos (opción por defecto).
+
+```yaml
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deployment-nginx
@@ -81,6 +119,7 @@ spec:
         - name: http
           containerPort: 80
 ```
+
 ## Service
 
 Los servicios son una abstracción que permite el acceso a las aplicaciones desplegadas en un clúster que son implementadas por uno o más Pods. Puesto que a cada Pod se le asigna una dirección IP a la que no se puede acceder directamente se necesita alguna solución para el acceso a los mismo, esta solución son los services. Además, si una aplicación tiene más de un Pod asociado los services balancearán la carga entre los Pods con una política Round Robin.
