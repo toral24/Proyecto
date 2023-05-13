@@ -77,3 +77,43 @@ Y que es posible acceder en este caso al servicio de nginx con el comando kubect
 Ahora en el navegador accediendo a localhost desde la máquina virtual se puede comprobar que todo funciona correctamente:
 
 <img src="../Imagenes/nginx.png">
+
+Como útlima prueba se van a modificar los archivos referentes al Persistent Volume y al Persistent Volume Claim para comprobar que se expone el archivo index.html que se ha preparado para esta prube y no el que viene por defecto:
+
+* Persistent volume modificado:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvlamp
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  hostPath:
+    path: /compartido/html
+```
+
+* Persistent volume claim modificado:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pvclamp
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+* Resultado en la página web:
+
+<img src="../Imagenes/web.png">

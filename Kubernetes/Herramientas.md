@@ -52,6 +52,13 @@ Si se quiere borrar el clúster se puede pasar el siguiente comando:
 kind delete cluster
 ```
 
+## ArgoCD (GitOps)
+
+Una de las grandes innovaciones que ha introducido Kubernetes es la definición declarativa de lo que se debe estar corriendo en el clúster almacenada en un repositorio git, lo que se conoce como GitOps. Este repositorio es considerado como “la fuente de la verdad”, con esta estrategia cualquier cambio en el codigo del repositorio se refleja en la infraestructura y en las aplicaciones, esto facilita el control de versiones, los rollbacks entre otras muchas ventajas como la mejora de la estabilidad y la consistencia de las aplicaciones.
+
+ArgoCD es una herramienta de despliegue continio (Continuous Deployment) que proporciona una interfaz gráfica con la que implementar estrategias GitOps en un clúster de kubernetes. 
+
+
 ## Helm
 
 También conocido como el gestor de paquetes de Kubernetes, Helm permite la configuración e implementación de aplicaciones y servicios en clústers de Kubernetes de una manera más sencilla y eficiente. A la hora de utilizar Helm se pueden dar dos casos:
