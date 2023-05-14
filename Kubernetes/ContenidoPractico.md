@@ -117,3 +117,43 @@ spec:
 * Resultado en la página web:
 
 <img src="../Imagenes/web.png">
+
+## Instalación de ArgoCD
+
+Para instalar ArgoCD primero se va a crear un namespace que van a utilizar los diferentes objetos (servicios, deployment, ...):
+
+```bash
+kubectl create namespace argocd
+```
+
+Y ahora con el siguiente comando se van a instalar todos los objetos:
+
+```bash
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+Una vez ejecutados estos comandos si no se ha producido ningún error se puede ver que están disponibles todos los objetos de ArgoCD:
+
+<img src="../Imagenes/obArgo.png">
+
+Para poder acceder a a la interfaz gráfica hay que realizar un port-forwarding al servicio de ArgoCD:
+
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8080:80
+```
+
+Y ya se podría acceder desde el navegador:
+
+<img src="../Imagenes/webArgo.png">
+
+Como se puede ver se pide un usuario y una contraseña, el usuario será **admin** y la contraseña se conseguirá con el siguiente comando (que habrá que ejecutar en una terminal diferente a la que se esta utilizando para realizar el port-forwarding):
+
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
+La contraseña en este caso será (todo lo que está antes de root) lcTtosF-FSDkNZHk
+
+Ahora introduciendo las credenciales correctamente ya se puede acceder a la aplicación de ArgoCD:
+
+<img src="../Imagenes/webArgo2.png">
