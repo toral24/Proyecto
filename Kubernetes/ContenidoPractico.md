@@ -152,8 +152,35 @@ Como se puede ver se pide un usuario y una contraseña, el usuario será **admin
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
-La contraseña en este caso será (todo lo que está antes de root) lcTtosF-FSDkNZHk
+La contraseña en este caso será (todo lo que está antes de root): `lcTtosF-FSDkNZHk`
 
 Ahora introduciendo las credenciales correctamente ya se puede acceder a la aplicación de ArgoCD:
 
 <img src="../Imagenes/webArgo2.png">
+
+## Instalar Helm y probar chart de Wordpress
+
+Para instalar helm simplemente hay que descargar el script de github para instalarlo, darle permisos de ejecución y ejecutarlo, lo que se traduciría en los siguientes tres comandos:
+
+```bash
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+Una vez instalado helm para añadir la aplicación WordPress en el clúster de kubernetes lo primero hay que buscar el chart correspondiente en el repositorio oficial de charts de helm [artifacthub](https://artifacthub.io/) en el cual se indican los siguientes comandos para instalar la aplicación:
+
+```bash
+helm repo add groundhog2k https://groundhog2k.github.io/helm-charts/
+helm install my-release groundhog2k/wordpress
+```
+Por lo que, ahora ya se puede acceder al servicio de WordPress realizanndo un port-forward al servicio que se ha creado con la instalación del chart:
+
+```bash
+root@proyecto:/home/sergio/kind# kubectl port-forward svc/my-release-wordpress 8080:80
+Forwarding from 127.0.0.1:8080 -> 8000
+Forwarding from [::1]:8080 -> 8000
+```
+
+<img src="../Imagenes/wordpress.png">
+
