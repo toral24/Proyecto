@@ -184,3 +184,69 @@ Forwarding from [::1]:8080 -> 8000
 
 <img src="../Imagenes/wordpress.png">
 
+## Instalar cliente de ArgoCD y añadir una aplicación con helm
+
+Para instalar el cliente de ArgoCD hay que ejecutar los siguientes comandos:
+
+```bash
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+```
+Y ahora dentro de la aplicación de ArgoCD como se dejó en el punto 3.4.5. seleccionar + NEW APP:
+
+<img src="../Imagenes/new.png">
+
+En este caso se va a instalar la aplicación nextcloud, por lo que ,se le dará este nombre, en project name se dejará default y en sync policy automatic, dejando la parte superior de la siguiente forma:
+
+<img src="../Imagenes/superior.png">
+
+En source habrá que añadir la url donde se encuentra el chart de nextcloud en este caso: https://nextcloud.github.io/helm/
+
+Y en destination dejar el valor que sale al hacer click y namespace default como se puede ver en la siguiente imagen:
+
+<img src="../Imagenes/inferior.png">
+
+Ahora haciendo clic en create ya se pude ver que la aplicación está corriendo y sincronizada con ArgoCD:
+
+<img src="../Imagenes/nextcloud.png">
+
+Entrando dentro se pueden ver los objetos que ha creado helm y algunos datos relevantes:
+
+<img src="../Imagenes/objetosNext.png">
+
+Ahora con un kubectl get all se pueden ver que estos objetos están corriendo dentro del clúster:
+
+```bash
+root@proyecto:/home/sergio kubectl get all
+NAME                                        READY   STATUS    RESTARTS      AGE
+pod/my-release-wordpress-57fc8d5c54-hx2pl   1/1     Running   4 (29m ago)   23h
+pod/mysql-74669cc6b5-5xfqd                  1/1     Running   1 (29m ago)   77m
+pod/nextcloud-69df9b7c5f-248mk              1/1     Running   0             3m18s
+
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/kubernetes             ClusterIP   10.96.0.1       <none>        443/TCP    23h
+service/my-release-wordpress   ClusterIP   10.96.231.172   <none>        80/TCP     23h
+service/mysql                  ClusterIP   None            <none>        3306/TCP   84m
+service/nextcloud              ClusterIP   10.96.29.169    <none>        8080/TCP   3m18s
+
+NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/my-release-wordpress   1/1     1            1           23h
+deployment.apps/mysql                  1/1     1            1           84m
+deployment.apps/nextcloud              1/1     1            1           3m18s
+
+NAME                                              DESIRED   CURRENT   READY   AGE
+replicaset.apps/my-release-wordpress-57fc8d5c54   1         1         1       23h
+replicaset.apps/mysql-74669cc6b5                  1         1         1       77m
+replicaset.apps/mysql-79c4686d65                  0         0         0       84m
+replicaset.apps/nextcloud-69df9b7c5f              1         1         1       3m18s
+```
+
+Ahora con un port-forward se puede acceder a la aplicación desde el navegador:
+
+```bash
+root@proyecto:/home/sergio kubectl port-forward svc/nextcloud 8000:8080
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+```
+<img src="../Imagenes/webNext.png">
