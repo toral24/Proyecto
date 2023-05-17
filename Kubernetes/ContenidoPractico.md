@@ -250,3 +250,20 @@ Forwarding from 127.0.0.1:8000 -> 80
 Forwarding from [::1]:8000 -> 80
 ```
 <img src="../Imagenes/webNext.png">
+
+En este caso como se ha utilizado directamente el chart con el repositorio oficial de NextCloud habrá que mirar dentro del archivo values.yaml el usuario y la contraseña, obviamente esto solo es una prueba y lo correcto sería hacer como en el siguiente punto y descargarlo, modificarlo y subirlo a un repositorio propio (utilizando un secret encriptado a ser posible por seguridad).
+
+*	Fichero values.yaml dentro del repositorio de nextcloud:
+
+<img src="../Imagenes/repoNext.png">
+
+* Usuario y contraseña en archivo values.yaml:
+
+<img src="../Imagenes/ucNext.png">
+
+*	Aplicación nextcloud con sesión iniciada:
+
+<img src="../Imagenes/webNextb.png">
+
+## Crear repositorio con charts de Helm y añadirlos a ArgoCD
+
