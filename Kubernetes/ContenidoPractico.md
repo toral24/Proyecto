@@ -267,3 +267,24 @@ En este caso como se ha utilizado directamente el chart con el repositorio ofici
 
 ## Crear repositorio con charts de Helm y añadirlos a ArgoCD
 
+Lo primero se va a cambiar la contraseña de Argo CD para que sea siempre, para ello primero hay que iniciar sesión desde la terminal haciendo un port-forward desde una terminal (como se indicó en pasos anteriores) y en la otra utilizando el siguiente comando:
+```bash
+root@proyecto:/home/sergio# argocd login localhost:8080
+WARNING: server certificate had error: x509: certificate signed by unknown authority. Proceed insecurely (y/n)? y
+Username: admin
+Password: (también se indica en pasos anteriores como conseguir la contraseña)
+```
+
+Ahora con el siguiente comando ya se puede actualizar la contraseña:
+
+```bash
+root@proyecto:/home/sergio# argocd account update-password
+*** Enter password of currently logged in user (admin):
+*** Enter new password for user admin:
+*** Confirm new password for user admin:
+Password updated
+Context 'localhost:8080' updated
+```
+
+El siguiente paso sería crear un repositorio de GitHub con el nombre de Charts_Helm, seguir las indicaciones para subir le directorio en el que se almacenarán los charts y buscar algunos charts en otros repositorios y copiarlos con git clone URL a este directorio (borrar todos los ficheros y directorios que no estén relacionados con el chart que se quiere utilizar). De esta forma se puede modificar los charts públicos y utilizarlos en AgoCD desde el repositorio propio de GitHub. En este caso se van a crear tres aplicaciones modificando charts:
+* <u>Nextcloud:</u> Se va a copiar el chart que se utilizó en el punto anterior modificando las credenciales para comprobar que funciona correctamente.
