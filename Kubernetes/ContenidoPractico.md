@@ -312,4 +312,4 @@ Forwarding from [::1]:8000 -> 80
 
 <img src="../Imagenes/inicio.png">
 
-* <u>Jenkins:</u>
+* <u>Jenkins:</u> Jenkins es un servidor de integración continua que es ampliamente utilizado en el sector del desarrollo de software. Permite compilar y probar proyectos de forma continua. 

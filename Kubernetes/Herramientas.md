@@ -68,9 +68,9 @@ También conocido como el gestor de paquetes de Kubernetes, Helm permite la conf
 Los charts de Helm son paquetes de manifiestos de Kubernetes que se encargan de la descripción de un conjunto relacionado de recursos para la ejecución de una aplicación, herramienta o servicio. Ofrecen gran facilidad para crear, compartir, publicar y versionar dentro del sistema de Helm.
 
 **Estructura de un chart de Helm**:
-* <u>Directorio templates</u>: Donde se guardarán los ficheros de templates.
-* <u>Values.yaml</u>: Contiene todos los valores por defecto.
-* <u>Fichero Charts.yaml</u>: Define al chart de Helm.
+* <u>Directorio templates</u>: Donde se guardarán los manifiestos de Kubernetes que se utilizarán como plantilla.
+* <u>Values.yaml</u>: Contiene los valores que se van a utilizar en los ficheros del directorio templates. Si se quiere modificar un valor (una contraseña, la base de datos que se va a utilizar, …) se hace en este fichero y automáticamente se cambiará en todos los manifiestos.
+* <u>Fichero Charts.yaml</u>: En este fichero se define el nombre, la versión, … del chart de Helm.
 * <u>Directorio Charts</u>: Tiene la capacidad de contener otros charts, que actuarán como dependencias.
 
 
