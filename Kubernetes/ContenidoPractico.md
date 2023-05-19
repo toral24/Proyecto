@@ -287,4 +287,29 @@ Context 'localhost:8080' updated
 ```
 
 El siguiente paso sería crear un repositorio de GitHub con el nombre de Charts_Helm, seguir las indicaciones para subir le directorio en el que se almacenarán los charts y buscar algunos charts en otros repositorios y copiarlos con git clone URL a este directorio (borrar todos los ficheros y directorios que no estén relacionados con el chart que se quiere utilizar). De esta forma se puede modificar los charts públicos y utilizarlos en AgoCD desde el repositorio propio de GitHub. En este caso se van a crear tres aplicaciones modificando charts:
-* <u>Nextcloud:</u> Se va a copiar el chart que se utilizó en el punto anterior modificando las credenciales para comprobar que funciona correctamente.
+
+* <u>Nextcloud:</u> Se va a copiar el chart que se utilizó en el punto anterior modificando las credenciales para comprobar que funciona correctamente. Para ello hay que modificar el fichero values.yaml del repositorio: 
+
+<img src="../Imagenes/values.png">
+
+Y ahora realizando el mismo proceso que en el punto anterior (poniendo el repositorio propio) se puede comprobar que utilizando las nuevas credenciales se puede acceder:
+
+<img src="../Imagenes/repoNext2.png">
+
+Comprobar que todo ha funcionado correctamente:
+
+<img src="../Imagenes/sync.png">
+
+Y ahora realizando un port-forward acceder con las nuevas credenciales:
+
+```bash
+root@proyecto:/home/sergio# kubectl port-forward svc/nextcloud 8000:8080
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+```
+
+<img src="../Imagenes/cred.png">
+
+<img src="../Imagenes/inicio.png">
+
+* <u>Jenkins:</u>
