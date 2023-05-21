@@ -27,4 +27,4 @@ Kubernetes es un sistema distribuido, lo cual quiere decir que los recursos (mem
 
     * <u>Kube-proxy:</u> Garantiza el cumplimiento de las reglas de la red. Es también el responsable de realizar el reenvío de la conexión.
 
-Por otro lado, un **clúster** es una combinación de varios nodos de estos nodos (mínimo un nodo máster). Las aplicaciones individuales se ejecutan en los clústeres, abstraídas del nivel físico, de ahí su importancia para aprovechar las ventajas que ofrece esta plataforma. Aportan una gran flexibilidad al no estar sujetos a un sistema operativo (Anónimo (c), 2022).
+Por otro lado, un **clúster** es una combinación de varios de estos nodos (mínimo un nodo máster). Las aplicaciones individuales se ejecutan en los clústeres, abstraídas del nivel físico, de ahí su importancia para aprovechar las ventajas que ofrece esta plataforma. Aportan una gran flexibilidad al no estar sujetos a un sistema operativo (Anónimo (c), 2022).

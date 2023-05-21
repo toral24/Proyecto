@@ -1,6 +1,6 @@
 # Contenido Práctico
 
-Para desarrollar el contenido práctico de docker se van a desplegar una serie de contenedores con archivos docker compose en una máquina virtual Ubuntu 22.04 LTS. 
+Para desarrollar el contenido práctico de docker se van a desplegar una serie de contenedores con archivos docker compose en una máquina virtual Ubuntu Server 22.04 LTS. 
 
 ## Portainer
 Portainer aporta una interfaz gráfica con la que gestionar los diferentes contenedores de docker, se accede por el navegador web en este caso a través del puerto 9443. 
