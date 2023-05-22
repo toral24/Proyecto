@@ -22,6 +22,8 @@ volumes:
   data:
 ```
 
+<img src="../Imagenes/portainer.png">
+
 ## Estructura LAMP
 
 LAMP es el acrónimo de "Linux, Apache, MySQL y PHP" y es uno de los sistemas de infraestructura de internet más usado (similar a XAMPP utilizado durante el curso). Para desplegar esta estructura en docker se han utilizado tres contenedore diferentes:
@@ -99,6 +101,10 @@ RUN docker-php-ext-install gd
 RUN a2enmod rewrite
 ```
 
+<img src="../Imagenes/lamp1.png">
+
+<img src="../Imagenes/lamp2.png">
+
 ## Poste.io
 Poste.io es un servidor de correo electrónico, consta de un único contenedor, y se expone por los puertos 4443 y 8181 pero para funcionar correctamente precisa de siete puertos.
 
@@ -131,6 +137,10 @@ services:
       - HTTP_PORT=8181
       - DISABLE_CLAMAV=TRUE
 ```
+
+<img src="../Imagenes/posteio.png">
+
+<img src="../Imagenes/posteio2.png">
 
 ## OpenLDAP
 
@@ -193,6 +203,8 @@ networks:
     driver: bridge
 ```
 
+<img src="../Imagenes/ldap.png">
+
 ## Homeassistant
 
 El último contendor que se va a implantar en esta parte del trabajo será dedicado a Homeassistant que es una plataforma de domótica de código abierto que permite rastrear y controlar los dispositivos del hogar y automatizar su control.
@@ -214,3 +226,7 @@ services:
       - "8123:8123"
     network_mode: bridge 
 ```
+
+<img src="../Imagenes/ha1.png">
+
+<img src="../Imagenes/ha2.png">
