@@ -47,11 +47,11 @@ spec: # required
 
 ## ReplicaSet
 
-Consiste en mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, para garantizar la disponibilidad de las aplicaciones. Permite tolerancia a fallos, ya que, si algún pod falla estarán los demás disponibles y se puede modificar el número de replicas dinámicamente. Estas réplicas se ejecutan en nodos distintos del clúster, por lo qué, en caso de fallar uno de los mismos también se garantiza tolerancia a fallos físicos de estos nodos.
+Consiste en mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, para garantizar la disponibilidad de las aplicaciones. Permite tolerancia a fallos, ya que, si algún pod falla estarán los demás disponibles y se puede modificar el número de replicas dinámicamente. Estas réplicas se ejecutan en nodos distintos del clúster, por lo que, en caso de fallar uno de los mismos también se garantiza tolerancia a fallos físicos de estos nodos.
 
 A la hora de definir un replicaset existen los siguientes parámetros dentro del spec (especificaciones) importantes:
 * `Replicas`: Número de replicas que deben estar ejecutándose.
-* `Selector`: Pods que va a controlar el ReplicaSet. Con el parámetro matchLabels se indica que los Pods que tengan un determinado Label son los que van a se controlados.
+* `Selector`: Pods que va a controlar el ReplicaSet. Con el parámetro matchLabels se indica que los Pods que tengan un determinado Label son los que van a ser controlados.
 * `Template`: Se indica la plantilla que se va a utilizar para realizar las réplicas.
 
 ```yaml
@@ -77,7 +77,7 @@ spec:
 
 ## Deployment
 
-Un deployment es la unidad de más alto nivel a la hora de gestionar Kubernetes. Son los objetos de Kubernetes que se utilizan para desplegar una aplicación. Conlleva la creación de un replicaset (por lo que hay que definirlo en el manifiesto) y de los Pods correspondientes. Es posible realizar actualización de la imagen con lo que se creará un nuevo repliaSet, si se tiene historial de replicaSet además se puede volver a una versión anterior (Rollback).
+Un deployment es la unidad de más alto nivel a la hora de gestionar Kubernetes. Son los objetos de Kubernetes que se utilizan para desplegar una aplicación (junto con los statefulsets). Conlleva la creación de un replicaset y de los Pods correspondientes. Es posible realizar actualización de la imagen con lo que se creará un nuevo replicaSet, si se tiene historial de replicaSet además se puede volver a una versión anterior (Rollback).
 
 A la hora de desplegar aplicaciones en el clúster con deployment pueden darse dos casos:
 
@@ -422,7 +422,7 @@ Un Daemonset garantiza que un grupo de nodos, generalmente todos los de un clús
 * Monitorización de los nodos nodos (Prometheus, sysdig, ...).
 * Almacenamiento en el clúster (ceph o glusterfs).
 
-Todos los parametros que puede tener un DaemonSet se ya se han estudiado
+Todos los parámetros que puede tener un DaemonSet se ya se han estudiado
 
 ```yaml
 apiVersion: apps/v1
