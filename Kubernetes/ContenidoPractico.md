@@ -312,4 +312,22 @@ Forwarding from [::1]:8000 -> 80
 
 <img src="../Imagenes/inicio.png">
 
-* <u>Jenkins:</u> Jenkins es un servidor de integración continua que es ampliamente utilizado en el sector del desarrollo de software. Permite compilar y probar proyectos de forma continua.
+* <u>Wordpress</u> En este caso se va a utilizar la herramienta kustomize para levantar la aplicación Wordpress junto con una base de datos de MySQL que utilizará está aplicación. Lo primero será crear el repositorio de github con los archivos necesarios:
+
+<img src="../Imagenes/repoWP.png">
+
+Ahora dentro de ArgoCD añadir el repositorio github y cambiar la opción directory por kutomize:
+
+<img src="../Imagenes/kusto.png">
+
+Ahora comprobar que se ha producido la sincronización correctamente y acceder a la aplicación:
+
+<img src="../Imagenes/objeWP.png">
+
+<img src="../Imagenes/regWP.png">
+
+<img src="../Imagenes/inicioWP.png">
+
+<img src="../Imagenes/WP.png">
+
+## Instalar y probar prometheus y grafana
