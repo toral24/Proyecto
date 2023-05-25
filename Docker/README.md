@@ -4,11 +4,11 @@
 
 ## ¿Qué es docker?
 
-Docker es un proyecto de código abierto, bajo licencia apache, escrito en Go y sirve para automatizar el despliegue de aplicaciones dentro de contenedores. Docker fue lanzado en 2008 incorporando una serie de conceptos y herramientas nuevos: 
+Docker es un proyecto de código abierto, bajo licencia apache, escrito en Go y sirve para automatizar el despliegue de aplicaciones dentro de contenedores. Docker fue lanzado en 2008 incorporando una serie de conceptos y herramientas nuevos:
 
 * Una interfaz de línea de comandos sencilla para ejecutar y diseñar imágenes nuevas en capas.
 * Un daemon de servidor.
-* Una biblioteca de imágenes prediseñadas.
+* Una biblioteca de imágenes prediseñadas (docker hub).
 * Servidor de registro.
 
 Cuando apareció presentaba muchas ventajas, y se extendió rápidamente. Permitiendo construir contenedores con aplicaciones, implementarlos, escalarlos y ejecutarlos rápidamente con un consumo mínimo de recursos. Las principales características de docker son:
@@ -28,9 +28,3 @@ Las ventajas que presenta docker frente a un hipervisor en el que se ejecutan m�
 * Se ejecutan contra la CPU directamente, siendo un 50% más rápidos que las máquinas virtuales que necesitan de una capa de traducción.
 
 Uno de los problemas que plantea era la comunicación entre contenedores cuando tuvieran que coordinarse o comunicarse entre ellos. Esto empujo a la creación de Docker Swarm y de [Kubernetes](../Kubernetes/).
-
-
-[volver](../index.md)
-
-
-

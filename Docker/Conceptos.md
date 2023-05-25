@@ -2,9 +2,9 @@
 
 ## Imágenes vs Contenedores
 
-Una imagen de docker es un archivo que se utiliza con el objetivo de crear contenedores de docker. Contienen el sistema de ficheros y la aplicación que se pretenede ejecutar dentro del mismo. Actuan como un script.
+Una imagen de docker es un archivo que se utiliza con el objetivo de crear contenedores de docker. Contiene el sistema de ficheros y la aplicación que se pretenede ejecutar dentro del mismo. Actúa como un script.
 
-Un contenedor de docker por otra parte es una instancia de una imagen, se caracteriza por ser independiente, liviano y contar con todo lo necesario para ejecutar una determinada aplicación. Los contenedores de docker se ejecutan a través de la plataforma Docker Engine.
+Un contenedor de docker, por otra parte, es una instancia de una imagen, se caracteriza por ser independiente, liviano y contar con todo lo necesario para ejecutar una determinada aplicación. Los contenedores de docker se ejecutan a través de la plataforma Docker Engine.
 
 
 ## Docker compose

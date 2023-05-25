@@ -66,13 +66,13 @@ kubectl exponse pod {nombre del pod} --port={puerto local por el que se quiere e
 kubectl expose deployment {nombre del deployment} --port={puerto local por el que se quiere exponer} –target-port={puerto externo}.
 ```
 
-El comando `kubectl delete` se utiliza para eliminar recursos se puede realizar a partir del nombre o de un manifiesto:
+El comando `kubectl delete` se utiliza para eliminar recursos, se puede realizar a partir del nombre o de un manifiesto:
 
 * Eliminar un recurso a partir de un manifiesto:
 ```bash
 kubectl delete -f {Manifiesto de Kubernetes del objeto que se quiere borrar}
 ```
-* Eliminar indicando su nombre:
+* Eliminar un recurso indicando su nombre:
 ```bash
 kubectl delete {Nombre del recurso que se quiere borrar}
 ```
@@ -91,5 +91,3 @@ Kubectl exec {Nombre del pod} -c {contenedor} -- {comando}
 ```bash
 Kubectl exec {Nombre del pod} -i /bin/bash 
 ```
-
-[volver](../index.md)

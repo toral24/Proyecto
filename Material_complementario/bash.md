@@ -1,7 +1,7 @@
 # Comandos útilies de bash
 
 ## Comandos
-Para copiar todos los archivos de un directorio en otro, si ya existen en el otro directorio no hace nada. Útil para hace backups. Se utiliza el siguiente comando:
+Para copiar todos los archivos de un directorio en otro, si ya existen en el otro directorio no hace nada. Útil para hacer backups. Se utiliza el siguiente comando:
 ```bash
 rsync -a
 ```
@@ -65,7 +65,7 @@ Mostrar los procesos del equipo:
 ```bash
 htop
 ```
-Para ver los procesos que están utilizando los diferentes procesos:
+Para ver los procesos que están utilizando:
 
 ```bash
 netstat -natup

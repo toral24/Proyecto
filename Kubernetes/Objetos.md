@@ -1,7 +1,7 @@
 # Objetos de Kubernetes
 
 Los objetos de Kubernetes son entidades persistentes dentro del sistema de Kubernetes, que se utilizan para representar el estado deseado del clúster. En ellos se especifica que contenedores se van a correr, de que recursos van a disponer y que políticas llevar a cabo con dichos contenedores (reinicio, actualización, …).
-Todos los objetos de Kubernetes incluyen el campo spec en el que se especifica el estado deseado del objeto. Lo más habitual para definir un objeto de Kubernetes es utilizar un archivo .yaml, también conocidos como manifiestos, en el que se proporciona toda la información. Para crear el objeto definido en dicho archivo se utiliza el comando de kubectl kubectl apply -f “archivo.yaml” y la api de Kubernetes convierte está información a JSON y crea el objeto si no ha habido ningún error. El archivo .yaml debe contener obligatoriamente los siguientes campos:
+Todos los objetos de Kubernetes incluyen el campo spec en el que se especifica el estado deseado del objeto. Lo más habitual para definir un objeto de Kubernetes es utilizar un archivo .yaml, también conocidos como manifiestos, en el que se proporciona toda la información. Para crear el objeto definido en dicho archivo se utiliza el comando de `kubectl kubectl apply -f “archivo.yaml”` y la api de Kubernetes convierte está información a JSON y crea el objeto si no ha habido ningún error. El archivo .yaml debe contener obligatoriamente los siguientes campos:
 * `apiVersision`: Versión de la API de Kubernetes.
 * `Kind`: Clase de objeto.
 * `Metadata`: Permite identificar el objeto incluyendo las etiquetas name, UID y/o namespace (en el siguiente punto se analizan estos últimos).
@@ -49,7 +49,7 @@ spec: # required
 
 Consiste en mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, para garantizar la disponibilidad de las aplicaciones. Permite tolerancia a fallos, ya que, si algún pod falla estarán los demás disponibles y se puede modificar el número de replicas dinámicamente. Estas réplicas se ejecutan en nodos distintos del clúster, por lo que, en caso de fallar uno de los mismos también se garantiza tolerancia a fallos físicos de estos nodos.
 
-A la hora de definir un replicaset existen los siguientes parámetros dentro del spec (especificaciones) importantes:
+A la hora de definir un ReplicaSet existen los siguientes parámetros dentro del spec (especificaciones) importantes:
 * `Replicas`: Número de replicas que deben estar ejecutándose.
 * `Selector`: Pods que va a controlar el ReplicaSet. Con el parámetro matchLabels se indica que los Pods que tengan un determinado Label son los que van a ser controlados.
 * `Template`: Se indica la plantilla que se va a utilizar para realizar las réplicas.
@@ -81,16 +81,16 @@ Un deployment es la unidad de más alto nivel a la hora de gestionar Kubernetes.
 
 A la hora de desplegar aplicaciones en el clúster con deployment pueden darse dos casos:
 
-* Aplicaciones con varios servicios: Por cada servicio que se necesite se crea un recurso deployment.
+* <u>Aplicaciones con varios servicios</u>: Por cada servicio que se necesite se crea un recurso deployment.
 
-* Aplicaciones construidas con microservicios: Por cada microservicio que forma parte de la aplicación se crea un recurso deployment.
+* <u>Aplicaciones construidas con microservicios</u>: Por cada microservicio que forma parte de la aplicación se crea un recurso deployment.
 
 Los manifiestos de deployment tienen los siguientes atributos relacionados:
 
-* revisionHistoryLimit: Indica cuántos ReplicaSets antiguos conservar para realizar rollback (por defecto es 10).
-* strategy: indica cómo se va a realizar la actualización del deployment. Puede ser:
-  * Recreate: Elimina los Pods antiguos y crea los nuevos.
-  * RollingUpdate: Va creando los nuevos Pods, comprueba que funcionan y se eliminan los antiguos (opción por defecto).
+* <u>revisionHistoryLimit</u>: Indica cuántos ReplicaSets antiguos conservar para realizar rollback (por defecto es 10).
+* <u>strategy</u>: indica cómo se va a realizar la actualización del deployment. Puede ser:
+  * <u>Recreate</u>: Elimina los Pods antiguos y crea los nuevos.
+  * <u>RollingUpdate</u>: Va creando los nuevos Pods, comprueba que funcionan y se eliminan los antiguos (opción por defecto).
 
 ```yaml
 apiVersion: apps/v1
@@ -125,7 +125,7 @@ spec:
 Los servicios son una abstracción que permite el acceso a las aplicaciones desplegadas en un clúster que son implementadas por uno o más Pods. Puesto que a cada Pod se le asigna una dirección IP a la que no se puede acceder directamente se necesita alguna solución para el acceso a los mismo, esta solución son los services. Además, si una aplicación tiene más de un Pod asociado los services balancearán la carga entre los Pods con una política Round Robin.
 
 Existen tres tipos de servicios principalmente:
-* <u>Cluster-IP</u>: Asigna una dirección virtual y un nombre que identifica el conjunto de Pods que están ofreciendo la aplicación (es el tipo por defecto). Esto permite gestionar conexiones con otros Pods. Este tipo de servicio solo permite el acceso interno, si se necesita acceder desde el exterior se puede utilizar el comando kubectl port-fordward (véase el Anexo 3).
+* <u>Cluster-IP</u>: Asigna una dirección virtual y un nombre que identifica el conjunto de Pods que están ofreciendo la aplicación (es el tipo por defecto). Esto permite gestionar conexiones con otros Pods. Este tipo de servicio solo permite el acceso interno, si se necesita acceder desde el exterior se puede utilizar el comando `kubectl port-fordward`.
 * <u>Node-port</u>: Abre un puerto para que el Service se accesible desde el exterior. Por defecto el puerto generado estará en el rango 30000-40000. Para acceder se utiliza la IP del servidor máster del clúster y el puerto asignado.
 * <u>LoadBalancer</u>: Se utiliza para balancear la carga de los servidores o máquinas virtuales mejorando el rendimiento general. Se utiliza principalmente en servicios de cloud público.
 
@@ -148,6 +148,11 @@ spec:
   selector:
     app: nginx
 ```
+
+**Servicio DNS en Kubernetes**
+
+Kubernetes integra un componente llamado CoreDNS, que ofrece un servidor DNS interno para que los pods resuelvan los nombres de los recursos del clúster a direcciones IP.
+Cada vez que se crea un Service se crea un registro en este servidor DNS de tipo A. Por eso es importante el campo name de los manifiestos de Kubernetes para los Services.
 
 ## Ingress
 Otra opción para acceder a las aplicaciones del clúster desde el exterior es utilizar Ingress controller que proporciona un proxy inverso que a través de reglas de enrutamiento de la API de Kubernetes permite el acceso a las aplicaciones a través de nombres.
@@ -183,7 +188,7 @@ spec:
 
 Algunos contenedores tienen definidas ciertas variables de entorno que son necesarias antes de su despliegue, por ejemplo, usuario y contraseña de mysql, etc. Estas variables de entrono pueden ser definidas directamente con el contenedor en la etiqueta env especificando el nombre de la variable de entorno que se va a definir y el valor que se le va a dar.
 
-Sin embargo, se pueden utilizar un configmap que permite generar un diccionario (clave, valor) para estas variables de entorno, esto permite entre otras cosas, que el resto de los objetos tengan una configuración genérica y solo habría que modificar los parámetros del configmap para ajustarlos a los valores del equipo que lo vaya a ejecutar, por ejemplo, la IP o el puerto que va a correr un contenedor. También facilita el intercambio de manifiestos en GitHub, puesto que, por ejemplo, permite establecer los valores de red donde se va a levantar el clúster en todos los manifiestos modificando un solo objeto.
+Sin embargo, se pueden utilizar un Configmap que permite generar un diccionario (clave, valor) para estas variables de entorno, esto permite entre otras cosas, que el resto de los objetos tengan una configuración genérica y solo habría que modificar los parámetros del Configmap para ajustarlos a los valores que se quieren aplicar, realizándose una modificación en cascada del resto de objetos que llamen a la clave del Configmap 
 
 Pese a que se puede generar un manifiesto donde se especifiquen los valores del Configmap es más seguro (aunque en principio no debería de contener datos confidenciales) generarlo a través de un comando y al utilizar en un manifiesto la clave no se puede ver el valor de la misma en ninguno de los manifiestos.
 
@@ -228,9 +233,9 @@ kubectl create cm mariadb --from-literal=root_password=my-password \
 ```
 ## Secret
 
-Un secret es un objeto muy similar a un configmap con la diferencia de que en estos objetos la información se cifra, por lo que es útil para almacenar y administrar información confidencial como contraseñas o llaves ssh, ya que por seguridad deben ser cifradas.
+Un secret es un objeto muy similar a un configmap con la diferencia de que en estos objetos la información se cifra, por lo que es útil para almacenar y administrar información confidencial como contraseñas o llaves SSH, ya que por seguridad deben ser cifradas.
 
-Igual que en el caso anterior los secrets se pueden configurar con manifiestos de Kubernetes pero es más recomendable definirlos a través de comandos (especialmente en estos objetos que si se va a almacenar información confidencial), además debería de borrarse el historial del terminal para evitar posibles ataques informáticos  
+Igual que en el caso anterior los secrets se pueden configurar con manifiestos de Kubernetes pero es más recomendable definirlos a través de comandos (especialmente en estos objetos que si se va a almacenar información confidencial), además debería de borrarse el historial del terminal para evitar posibles ataques informáticos. También existe la herramienta kubeseal que oculta la información del secret  
 
 ### Comando para crear un secret
 ```bash
@@ -262,7 +267,7 @@ Los volúmenes de Kubernetes se pueden dividir en:
 * <u>Efímeros</u>: Tienen la misma duración que el pod, para usarlos al definir el volumen en el pod en lugar de indicar una ruta dentro del cúster hay que añadir `emptyDir: {}`.
 * <u>Persistentes</u>: Un volumen persistente (PV), por otro lado, es un recurso de almacenamiento que se define a partir de un manifiesto de kubernetes y que puede ser almacenado localmente en los nodos, en un repositorio de github o en algún servicio de cloud. 
 
-Existe una capa de abstracción entre los Pods y los volúmenes persistentes llamada Persistent Volume Claim (PVC) que se crea automáticamente un volumen persistente que tenga un storgeClass y accessMode compatible si no se especifica en el volumen persistente directamente los PVC que tiene vinculados (que es lo recomendable). Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor (Cabadas, 2022).
+Existe una capa de abstracción entre los pods y los volúmenes persistentes llamada Persistent Volume Claim (PVC) que vincula los pods y los volúmenes persistentes. Esta capa de abstracción se añade, porque puede llegar a producir conflictos vincular directamente un volumen persistente a un contenedor.
 
 ### Aprovisionamiento de los volúmenes
 
@@ -493,5 +498,3 @@ spec:
             - date; echo Curso del CEP
           restartPolicy: OnFailure
 ```
-
-[volver](../index.md)

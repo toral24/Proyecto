@@ -1,6 +1,6 @@
 # Contenido Práctico
 
-Para desarrollar el contenido práctico de docker se van a desplegar una serie de contenedores con archivos docker compose en una máquina virtual Ubuntu Server 22.04 LTS. 
+Para desarrollar el contenido práctico de docker se van a desplegar una serie de contenedores con archivos docker-compose en una máquina virtual Ubuntu Server 22.04 LTS. 
 
 ## Portainer
 Portainer aporta una interfaz gráfica con la que gestionar los diferentes contenedores de docker, se accede por el navegador web en este caso a través del puerto 9443. 
@@ -26,13 +26,13 @@ volumes:
 
 ## Estructura LAMP
 
-LAMP es el acrónimo de "Linux, Apache, MySQL y PHP" y es uno de los sistemas de infraestructura de internet más usado (similar a XAMPP utilizado durante el curso). Para desplegar esta estructura en docker se han utilizado tres contenedore diferentes:
+LAMP es el acrónimo de "Linux, Apache, MySQL y PHP" y es uno de los sistemas de infraestructura de internet más usado (similar a XAMPP utilizado durante el curso). Para desplegar esta estructura en docker se han utilizado tres contenedores diferentes:
 
-* PHPMyAdmin: Expuesto desde el puerto 8000 en este contenedor se gestionarán las bases de datos que se pueden utilizar a través de PHP comunicandose con otros conetenedores.
+* </u>PHPMyAdmin<u>: Expuesto desde el puerto 8000 en este contenedor se gestionarán las bases de datos que se pueden utilizar a través de PHP comunicandose con otros conetenedores.
 
-* MySQL: Expuesto por el puerto 3306 es el único de los contenedores a los que no se accede directamente, pero es el que se habrá que inidcar junto con la IP como servidor de base de datos en los fichero PHP.
+* </u>MySQL<u>: Expuesto por el puerto 3306 es el único de los contenedores a los que no se accede directamente, pero es el que se habrá que inidcar junto con la IP como servidor de base de datos en los fichero PHP.
 
-* Apache: Expuesto desde el puerto 80 será el contenedor que muestre el fichero PHP que tenga el nombre de “index.php” (si no existe dará un error).
+* <u>Apache</u>: Expuesto desde el puerto 80 será el contenedor que muestre el fichero PHP que tenga el nombre de “index.php” (si no existe dará un error).
 
 A continuación se puede ver el archivo docker-compose.yaml utilizado para levantar los contenedores:
 
@@ -148,9 +148,9 @@ OpenLDAP es una implementación de código abierto del protocolo Lightweight Dir
 
 En este caso, se van a implementar dos contenedores:
 
-* Servidor OpenLDAP: En este contenedor se implementará toda la configuración de este protocolo. Esta expuesto por los puertos 389 y 636.
+* <u>Servidor OpenLDAP</u>: En este contenedor se implementará toda la configuración de este protocolo. Esta expuesto por los puertos 389 y 636.
 
-* PHP_LDAP_Admin: Este contenedor se utilizará para tener una interfaz gráfica con la que gestionar el servidor. Estará expuesto por el puerto 80 por lo que no se puede ejecutar a la vez que la estructura LAMP.
+* <u>PHP_LDAP_Admin</u>: Este contenedor se utilizará para tener una interfaz gráfica con la que gestionar el servidor. Estará expuesto por el puerto 80 por lo que no se puede ejecutar a la vez que la estructura LAMP.
 
 A continuación se puede ver el archivo docker-compose.yaml con el que se levantaron los contenedores:
 
